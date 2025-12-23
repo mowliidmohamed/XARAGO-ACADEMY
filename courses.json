@@ -29,9 +29,8 @@
     "description": "Learn to sketch your designs with professional proportions.",
     "syllabus": ["Hand Sketching", "Color Theory", "Fabric Rendering", "Portfolio Layout"]
   },
-  ,
   {
-    "id": "Fabric & Textile Knowledge",
+    "id": "textile-science",
     "title": "Textile Science",
     "price": 300,
     "image": "assets/fabric.jpg",
@@ -41,7 +40,7 @@
     "syllabus": ["Fiber Classification", "Yarn Production", "Fabric Construction", "Dyeing & Finishing"]
   },
   {
-    "id": "Fashion Marketing & Branding",
+    "id": "fashion-marketing",
     "title": "Fashion Marketing",
     "price": 400,
     "image": "assets/styling.jpg",
@@ -51,7 +50,7 @@
     "syllabus": ["Brand Storytelling", "Social Media Strategy", "Pricing for Profit", "Fashion PR"]
   },
   {
-    "id": "Garment Construction & Stitching",
+    "id": "couture-sewing",
     "title": "Couture Sewing",
     "price": 550,
     "image": "assets/construction.jpg",
@@ -61,6 +60,3 @@
     "syllabus": ["Hand-Stitched Hems", "Corsetry Basics", "Lining & Interfacing", "Luxury Fabric Handling"]
   }
 ]
-
-
-
