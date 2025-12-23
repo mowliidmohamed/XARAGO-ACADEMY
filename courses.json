@@ -1,6 +1,6 @@
 [
   {
-    "id": "pattern-making",
+    "id": "Pattern-Making",
     "title": "Pattern Making & Draping",
     "price": 450,
     "image": "assets/pattern.jpg",
@@ -10,7 +10,7 @@
     "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
   },
   {
-    "id": "digital-cad",
+    "id": "Digital Design Tools",
     "title": "Digital CAD (CLO 3D)",
     "price": 600,
     "image": "assets/cad.jpg",
@@ -20,7 +20,7 @@
     "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
   },
   {
-    "id": "fashion-illustration",
+    "id": "Fashion Sketching & Illustration",
     "title": "Fashion Illustration",
     "price": 350,
     "image": "assets/illustration.jpg",
@@ -28,6 +28,38 @@
     "duration": "4 Weeks",
     "description": "Learn to sketch your designs with professional proportions.",
     "syllabus": ["Hand Sketching", "Color Theory", "Fabric Rendering", "Portfolio Layout"]
+  },
+  ,
+  {
+    "id": "Fabric & Textile Knowledge",
+    "title": "Textile Science",
+    "price": 300,
+    "image": "assets/fabric.jpg",
+    "level": "Beginner",
+    "duration": "6 Weeks",
+    "description": "Understand fiber properties, weaves, and sustainable fabric sourcing for your collections.",
+    "syllabus": ["Fiber Classification", "Yarn Production", "Fabric Construction", "Dyeing & Finishing"]
+  },
+  {
+    "id": "Fashion Marketing & Branding",
+    "title": "Fashion Marketing",
+    "price": 400,
+    "image": "assets/styling.jpg",
+    "level": "Intermediate",
+    "duration": "5 Weeks",
+    "description": "Learn how to build a brand identity and market your studio to the right audience.",
+    "syllabus": ["Brand Storytelling", "Social Media Strategy", "Pricing for Profit", "Fashion PR"]
+  },
+  {
+    "id": "Garment Construction & Stitching",
+    "title": "Couture Sewing",
+    "price": 550,
+    "image": "assets/construction.jpg",
+    "level": "Advanced",
+    "duration": "10 Weeks",
+    "description": "Master high-end finishing techniques used in luxury fashion houses.",
+    "syllabus": ["Hand-Stitched Hems", "Corsetry Basics", "Lining & Interfacing", "Luxury Fabric Handling"]
   }
 ]
+
 
