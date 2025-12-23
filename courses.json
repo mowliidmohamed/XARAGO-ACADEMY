@@ -19,17 +19,6 @@
     "duration": "8 Weeks",
     "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
   },
-  [
-  {
-    "id": "pattern-making",
-    "title": "Pattern Making",
-    ...
-  },
-  {
-    "id": "digital-cad",
-    "title": "Digital CAD",
-    ...
-  },
   {
     "id": "fashion-illustration",
     "title": "Fashion Illustration",
@@ -42,4 +31,3 @@
   }
 ]
 
-]
