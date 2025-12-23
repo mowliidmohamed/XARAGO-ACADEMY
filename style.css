@@ -605,3 +605,71 @@ h1, h2 {
     top: 20px; right: 40px;
     color: white; font-size: 50px; cursor: pointer;
 }
+/* Force Gallery Text Visibility */
+.gallery-item .work-info {
+    position: relative; /* Ensures it's not hidden behind the image */
+    background: #ffffff !important; 
+    padding: 15px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: center;
+}
+
+.gallery-item .work-info h4 {
+    color: #111111 !important; /* Pure black text */
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.gallery-item .work-info p {
+    color: #666666 !important; /* Dark grey text */
+    font-size: 0.9rem;
+    margin: 0;
+}
+/* Gallery Container Fix */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.gallery-item {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column; /* Stacks image on top of text */
+}
+
+.gallery-img-container img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    cursor: zoom-in;
+    display: block;
+}
+
+.work-info {
+    padding: 20px;
+    background: #ffffff !important;
+    text-align: center;
+    border-top: 1px solid #f0f0f0;
+}
+
+.work-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1a1a1a !important; /* Force dark text */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.work-info p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #d4af37 !important; /* Elegant gold color for project title */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

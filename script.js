@@ -5,30 +5,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     async function loadStudentWork() {
-    const gallery = document.getElementById('student-gallery');
-    if (!gallery) return;
+        const gallery = document.getElementById('student-gallery');
+        if (!gallery) return;
 
-    try {
-        const response = await fetch('./students.json');
-        const studentWork = await response.json();
+        try {
+            const response = await fetch('./students.json');
+            const studentWork = await response.json();
 
-        gallery.innerHTML = ''; 
-        studentWork.forEach(work => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            // Added 'onclick' here for the Zoom effect
-            item.setAttribute('onclick', `openZoom("${work.image}")`);
-            
-            item.innerHTML = `
-                <img src="${work.image}" alt="${work.project}">
-                <div class="work-info">
-                    <h4>${work.studentName}</h4>
-                    <p>${work.project}</p>
-                </div>
-            `;
-            gallery.appendChild(item);
-        });
-    } catch (e) { console.error("Error:", e); }
+            gallery.innerHTML = ''; 
+            studentWork.forEach(work => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                item.innerHTML = `
+                    <div class="gallery-img-container">
+                        <img src="${work.image}" alt="${work.project}" onclick="openZoom('${work.image}')">
+                    </div>
+                    <div class="work-info">
+                        <h4>${work.studentName}</h4>
+                        <p>${work.project}</p>
+                    </div>
+                `;
+                gallery.appendChild(item);
+            });
+        } catch (e) { console.error("Error:", e); }
+    }
 }
 
     // --- 2. LOAD COURSES ---
