@@ -1,6 +1,6 @@
 [
   {
-    "id": "Pattern-Making",
+    "id": "pattern-making",
     "title": "Pattern Making & Draping",
     "price": 450,
     "image": "assets/pattern.jpg",
@@ -10,8 +10,8 @@
     "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
   },
   {
-    "id": "Digital Design Tools",
-    "title": "Digital CAD (CLO 3D)",
+    "id": "digital-cad",
+    "title": "Digital CAD (CLO 3D) & Adobe illustrator",
     "price": 600,
     "image": "assets/cad.jpg",
     "level": "Intermediate",
@@ -20,7 +20,7 @@
     "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
   },
   {
-    "id": "Fashion Sketching & Illustration",
+    "id": "fashion-illustration",
     "title": "Fashion Illustration",
     "price": 350,
     "image": "assets/illustration.jpg",
@@ -61,5 +61,6 @@
     "syllabus": ["Hand-Stitched Hems", "Corsetry Basics", "Lining & Interfacing", "Luxury Fabric Handling"]
   }
 ]
+
 
 
