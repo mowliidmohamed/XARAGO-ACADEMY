@@ -4,6 +4,26 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    async function loadStudentWork() {
+    const response = await fetch('students.json');
+    const studentWork = await response.json();
+    const gallery = document.getElementById('student-gallery'); // Make sure your HTML has this ID
+
+    studentWork.forEach(work => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `
+            <img src="${work.image}" alt="${work.project}">
+            <div class="work-info">
+                <h4>${work.studentName}</h4>
+                <p>${work.project}</p>
+            </div>
+        `;
+        gallery.appendChild(item);
+    });
+}
+
+loadStudentWork();
     // ... existing code ...
 
 async function loadCourses() {

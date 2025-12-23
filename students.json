@@ -1,0 +1,23 @@
+[
+  {
+    "id": "work-1",
+    "studentName": "Amina H.",
+    "project": "Bridal Couture",
+    "image": "assets/student-work1.jpg",
+    "description": "Exquisite hand-stitched detailing and silk draping."
+  },
+  {
+    "id": "work-2",
+    "studentName": "Omar D.",
+    "project": "Streetwear Collection",
+    "image": "assets/student-work2.jpg",
+    "description": "Modern silhouettes inspired by urban architecture."
+  },
+  {
+    "id": "work-3",
+    "studentName": "Leyla S.",
+    "project": "Traditional Fusion",
+    "image": "assets/student-work3.jpg",
+    "description": "Blending heritage patterns with contemporary tailoring."
+  }
+]
