@@ -18,5 +18,28 @@
     "description": "Learn industry-standard 3D prototyping and virtual fitting.",
     "duration": "8 Weeks",
     "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
+  },
+  [
+  {
+    "id": "pattern-making",
+    "title": "Pattern Making",
+    ...
+  },
+  {
+    "id": "digital-cad",
+    "title": "Digital CAD",
+    ...
+  },
+  {
+    "id": "fashion-illustration",
+    "title": "Fashion Illustration",
+    "price": 350,
+    "image": "assets/illustration.jpg",
+    "level": "Beginner",
+    "duration": "4 Weeks",
+    "description": "Learn to sketch your designs with professional proportions.",
+    "syllabus": ["Hand Sketching", "Color Theory", "Fabric Rendering", "Portfolio Layout"]
   }
+]
+
 ]
