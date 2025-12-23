@@ -1,9 +1,6 @@
-/**
- * THE ATELIER - Unified Website Logic
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- 1. LOAD STUDENT WORK ---
     async function loadStudentWork() {
         const gallery = document.getElementById('student-gallery');
         if (!gallery) return;
@@ -16,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             studentWork.forEach(work => {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
-                
                 item.innerHTML = `
                     <div class="gallery-img-container">
                         <img src="${work.image}" alt="${work.project}" onclick="openZoom('${work.image}')">
@@ -28,9 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 gallery.appendChild(item);
             });
-        } catch (e) { console.error("Error:", e); }
+        } catch (e) { console.error("Gallery Error:", e); }
     }
-}
 
     // --- 2. LOAD COURSES ---
     async function loadCourses() {
@@ -38,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return;
 
         try {
-            const response = await fetch('courses.json');
+            const response = await fetch('./courses.json');
             const courses = await response.json();
 
             container.innerHTML = courses.map(course => `
@@ -53,10 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `).join('');
-        } catch (e) { console.error("Error loading courses:", e); }
+        } catch (e) { console.error("Course Error:", e); }
     }
 
-    // --- 3. MODAL LOGIC ---
+    // --- 3. MODAL & ZOOM LOGIC ---
     window.openCourseModal = function(course) {
         const modal = document.getElementById('courseModal');
         document.getElementById('modalTitle').innerText = course.title;
@@ -67,20 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const syllabusList = document.getElementById('modalSyllabus');
         syllabusList.innerHTML = course.syllabus.map(item => `<li>${item}</li>`).join('');
-
         modal.style.display = 'flex';
     };
 
-    const closeBtn = document.querySelector('.close-modal');
-    if (closeBtn) {
-        closeBtn.onclick = () => document.getElementById('courseModal').style.display = 'none';
-    }
+    window.openZoom = function(imageSrc) {
+        const zoomOverlay = document.getElementById('imageZoom');
+        const zoomedImg = document.getElementById('zoomedImg');
+        if(zoomedImg) zoomedImg.src = imageSrc;
+        if(zoomOverlay) zoomOverlay.style.display = 'flex';
+    };
+
+    window.closeZoom = function() {
+        document.getElementById('imageZoom').style.display = 'none';
+    };
 
     // --- 4. ENROLLMENT CALCULATOR ---
     const checkboxes = document.querySelectorAll('input[name="course"]');
-    const totalPriceDisplay = document.getElementById('totalPrice');
-    const selectedList = document.getElementById('selectedList');
-
     if (checkboxes.length > 0) {
         const updateSummary = () => {
             let total = 0;
@@ -94,25 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                  </div>`;
                 }
             });
-            totalPriceDisplay.innerText = `$${total.toFixed(2)}`;
-            selectedList.innerHTML = listHTML || '<p>Select a module to calculate.</p>';
+            document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('selectedList').innerHTML = listHTML || '<p>Select a module.</p>';
         };
         checkboxes.forEach(box => box.addEventListener('change', updateSummary));
     }
 
-    // Initialize the site
+    // Run everything
     loadStudentWork();
     loadCourses();
 
-    console.log("The Atelier: Systems Online.");
-window.openZoom = function(imageSrc) {
-    const zoomOverlay = document.getElementById('imageZoom');
-    const zoomedImg = document.getElementById('zoomedImg');
-    zoomedImg.src = imageSrc;
-    zoomOverlay.style.display = 'flex';
-};
-
-window.closeZoom = function() {
-    document.getElementById('imageZoom').style.display = 'none';
-};
+    // Modal Close
+    const closeModBtn = document.querySelector('.close-modal');
+    if (closeModBtn) closeModBtn.onclick = () => document.getElementById('courseModal').style.display = 'none';
 });
