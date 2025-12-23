@@ -4,30 +4,32 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. LOAD STUDENT WORK ---
     async function loadStudentWork() {
-        const gallery = document.getElementById('student-gallery');
-        if (!gallery) return;
+    const gallery = document.getElementById('student-gallery');
+    if (!gallery) return;
 
-        try {
-            const response = await fetch('students.json');
-            const studentWork = await response.json();
+    try {
+        const response = await fetch('./students.json');
+        const studentWork = await response.json();
 
-            gallery.innerHTML = ''; // Clear "empty" message
-            studentWork.forEach(work => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.innerHTML = `
-                    <img src="${work.image}" alt="${work.project}">
-                    <div class="work-info">
-                        <h4>${work.studentName}</h4>
-                        <p>${work.project}</p>
-                    </div>
-                `;
-                gallery.appendChild(item);
-            });
-        } catch (e) { console.error("Error loading student work:", e); }
-    }
+        gallery.innerHTML = ''; 
+        studentWork.forEach(work => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            // Added 'onclick' here for the Zoom effect
+            item.setAttribute('onclick', `openZoom("${work.image}")`);
+            
+            item.innerHTML = `
+                <img src="${work.image}" alt="${work.project}">
+                <div class="work-info">
+                    <h4>${work.studentName}</h4>
+                    <p>${work.project}</p>
+                </div>
+            `;
+            gallery.appendChild(item);
+        });
+    } catch (e) { console.error("Error:", e); }
+}
 
     // --- 2. LOAD COURSES ---
     async function loadCourses() {
@@ -102,4 +104,14 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCourses();
 
     console.log("The Atelier: Systems Online.");
+window.openZoom = function(imageSrc) {
+    const zoomOverlay = document.getElementById('imageZoom');
+    const zoomedImg = document.getElementById('zoomedImg');
+    zoomedImg.src = imageSrc;
+    zoomOverlay.style.display = 'flex';
+};
+
+window.closeZoom = function() {
+    document.getElementById('imageZoom').style.display = 'none';
+};
 });
