@@ -1,0 +1,8 @@
+/my-fashion-website (Main Project Folder)
+  ├── index.html
+  ├── style.css
+  └── assets/
+       ├── pattern.jpg
+       ├── cad.jpg
+       ├── illustration.jpg
+       └── ...

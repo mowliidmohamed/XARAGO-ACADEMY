@@ -1,0 +1,22 @@
+[
+  {
+    "id": "pattern-making",
+    "title": "Pattern Making & Draping",
+    "price": 450,
+    "image": "assets/pattern.jpg",
+    "level": "Beginner",
+    "description": "Master the art of transforming 2D sketches into 3D garments.",
+    "duration": "8 Weeks",
+    "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
+  },
+  {
+    "id": "digital-cad",
+    "title": "Digital CAD (CLO 3D)",
+    "price": 600,
+    "image": "assets/cad.jpg",
+    "level": "Intermediate",
+    "description": "Learn industry-standard 3D prototyping and virtual fitting.",
+    "duration": "8 Weeks",
+    "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
+  }
+]

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Atelier | Fashion Design Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">THE XARAGO FASHION ACADEMY</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#courses" class="cta-mini">Enroll Now</a>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Master the Architecture of Style</h1>
+            <p>Bridging traditional craftsmanship with digital innovation.</p>
+            <div class="hero-btns">
+                <a href="#courses" class="btn-primary">Explore Courses</a>
+                <a href="#contact" class="btn-secondary">Book a Tour</a>
+            </div>
+        </div>
+    </header>
+<section id="courses" class="pillars">
+    <h2 class="section-title">The Curriculum</h2>
+    <div id="course-container" class="pillar-grid"></div>
+</section>
+
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Our Philosophy</h2>
+                <p>We don't just teach you how to make clothes. We teach you how to build a brand. Our studio combines Savile Row precision with 3D digital prototyping.</p>
+            </div>
+            <div class="about-stats">
+                <div><span>500+</span><p>Graduates</p></div>
+                <div><span>100%</span><p>Hands-on</p></div>
+            </div>
+        </div>
+    </section>
+    <section id="portfolio" class="portfolio">
+    <h2 class="section-title">Student Work</h2>
+    
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="cad">Digital CAD</button>
+        <button class="filter-btn" data-filter="pattern">Pattern Making</button>
+        <button class="filter-btn" data-filter="illustration">Illustration</button>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item" data-category="cad">
+            <img src="assets/gallery-1.jpg" alt="Student CAD Work">
+            <div class="item-overlay">3D Evening Gown Render</div>
+        </div>
+        <div class="gallery-item" data-category="pattern">
+            <img src="assets/gallery-2.jpg" alt="Pattern Drafting">
+            <div class="item-overlay">Technical Jacket Draft</div>
+        </div>
+        <div class="gallery-item" data-category="illustration">
+            <img src="assets/gallery-3.jpg" alt="Fashion Illustration">
+            <div class="item-overlay">Mixed Media Croquis</div>
+        </div>
+        <div class="gallery-item" data-category="cad">
+            <img src="assets/gallery-4.jpg" alt="CLO3D Simulation">
+            <div class="item-overlay">Digital Fabric Simulation</div>
+        </div>
+    </div>
+</section>
+<section id="enroll" class="enrollment-section">
+    <div class="enroll-container">
+        <h2 class="section-title">Course Enrollment</h2>
+        <div class="form-layout">
+            <div class="course-selection">
+                <h3>Select Your Modules</h3>
+                
+                <label class="course-item">
+                    <input type="checkbox" name="course" value="450" data-name="Pattern Making">
+                    <div class="course-info">
+                        <strong>Pattern Making & Draping</strong>
+                        <span>$450.00</span>
+                    </div>
+                </label>
+
+                <label class="course-item">
+                    <input type="checkbox" name="course" value="600" data-name="Digital CAD">
+                    <input type="checkbox" style="display:none"> <div class="course-info">
+                        <strong>Digital CAD (CLO 3D)</strong>
+                        <span>$600.00</span>
+                    </div>
+                </label>
+
+                <label class="course-item">
+                    <input type="checkbox" name="course" value="350" data-name="Fabric Science">
+                    <div class="course-info">
+                        <strong>Textile & Fabric Science</strong>
+                        <span>$350.00</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="enrollment-summary">
+                <h3>Tuition Summary</h3>
+                <div id="selectedList">
+                    <p class="empty-msg">Select a module to calculate tuition.</p>
+                </div>
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span id="totalPrice">$0.00</span>
+                </div>
+                <input type="email" placeholder="Designer Email Address" id="enroll-email">
+                <button type="submit" class="btn-enroll">Complete Registration</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact-section">
+    <h2 class="section-title">Visit the XARAGO FASHION ACADEMY</h2>
+    <div class="contact-grid">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617543812836!2d-73.985428!3d40.748817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzU1LjciTiA3M8KwNTknMDcuNSJX!5e0!3m2!1sen!2sus!4v1625000000000" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+        <div class="contact-info">
+            <h3>XARAGO HQ</h3>
+            <p>123 Fashion Ave, Boqol-jire District<br>,Hargeisa BJ 10001</p>
+            <p><strong>Email:</strong> XARAGOFA@gmail.com</p>
+            <p><strong>Phone:</strong> +252 (63) 4197374 </p>
+        </div>
+    </div>
+    <div id="newsletterPopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <div class="popup-flex">
+            <div class="popup-image" style="background-image: url('assets/popup-img.jpg');"></div>
+            
+            <div class="popup-text">
+                <span class="popup-label">The Atelier Journal</span>
+                <h2>Elevate Your Craft</h2>
+                <p>Join 5,000+ designers. Receive our weekly guide on fabric trends, CAD secrets, and studio mastery.</p>
+                
+                <form id="popupForm">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn-subscribe">Join Now</button>
+                </form>
+                <p class="popup-footer">Strictly inspiration. No spam.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<footer class="main-footer">
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-logo">THE ATELIER</div>
+        
+        <div class="social-picture-links">
+            <a href="#"><img src="assets/icon-ig.png" alt="Instagram"></a>
+            <a href="#"><img src="assets/icon-pin.png" alt="Pinterest"></a>
+            <a href="#"><img src="assets/icon-fb.png" alt="Facebook"></a>
+            <a href="#"><img src="assets/icon-wh.png" alt="whatsapp"></a>
+        </div>
+        
+        <p class="footer-tagline">Where tradition meets the future of design.</p>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+<div id="newsletterPopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <h2>Join the Inner Circle</h2>
+        <p>Subscribe for exclusive fabric sourcing guides and early access to CAD masterclasses.</p>
+        <form id="popupForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn-enroll">Subscribe</button>
+        </form>
+    </div>
+    <div id="newsletterPopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <div class="popup-flex">
+            <div class="popup-image" style="background-image: url('assets/popup-img.jpg');"></div>
+            
+            <div class="popup-text">
+                <div id="popup-form-content">
+                    <span class="popup-label">The Atelier Journal</span>
+                    <h2>Elevate Your Craft</h2>
+                    <p>Join 5,000+ designers. Receive our weekly guide on fabric trends and CAD secrets.</p>
+                    
+                    <form id="newsletterForm" action="https://formspree.io/f/your_form_id" method="POST">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-subscribe">Join Now</button>
+                    </form>
+                </div>
+
+                <div id="popup-success-content" style="display: none; text-align: center;">
+                    <div style="font-size: 3rem; color: #1a1a1a; margin-bottom: 20px;">✓</div>
+                    <h2>Welcome to the Studio</h2>
+                    <p>Your subscription is confirmed. Check your inbox for your first designer guide shortly.</p>
+                    <button class="btn-subscribe" onclick="document.getElementById('newsletterPopup').style.display='none'">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="courseModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+            <div class="modal-image" id="modalImage"></div>
+            <div class="modal-info">
+                <h2 id="modalTitle">Course Title</h2>
+                <div class="modal-meta">
+                    <span id="modalLevel">Level</span> | <span id="modalDuration">Duration</span>
+                </div>
+                <hr>
+                <h3>Syllabus Overview</h3>
+                <ul id="modalSyllabus">
+                    </ul>
+                <div class="modal-footer-action">
+                    <span class="modal-price" id="modalPrice">$0.00</span>
+                    <a href="#enroll" class="btn-enroll-now" id="modalEnrollBtn">Enroll in this Module</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
