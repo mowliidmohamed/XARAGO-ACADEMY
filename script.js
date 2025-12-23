@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openZoom = function(imageSrc) {
         const zoomOverlay = document.getElementById('imageZoom');
         const zoomedImg = document.getElementById('zoomedImg');
-        if(zoomedImg) zoomedImg.src = imageSrc;
-        if(zoomOverlay) zoomOverlay.style.display = 'flex';
+        if (zoomedImg) zoomedImg.src = imageSrc;
+        if (zoomOverlay) zoomOverlay.style.display = 'flex';
     };
 
     window.closeZoom = function() {
@@ -97,11 +97,45 @@ document.addEventListener('DOMContentLoaded', () => {
         checkboxes.forEach(box => box.addEventListener('change', updateSummary));
     }
 
-    // Run everything
+    // --- 5. POPUP LOGIC ---
+    const popupOverlay = document.querySelector('.popup-overlay');
+    const openPopupBtn = document.getElementById('openPopup'); // trigger button
+    const closePopupBtn = document.querySelector('.close-popup');
+
+    if (openPopupBtn && popupOverlay) {
+        openPopupBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            popupOverlay.classList.add('active');
+        });
+    }
+
+    if (closePopupBtn && popupOverlay) {
+        closePopupBtn.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+        });
+    }
+
+    if (popupOverlay) {
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popupOverlay) {
+            popupOverlay.classList.remove('active');
+        }
+    });
+
+    // --- Run everything ---
     loadStudentWork();
     loadCourses();
 
-    // Modal Close
+    // --- Modal Close ---
     const closeModBtn = document.querySelector('.close-modal');
-    if (closeModBtn) closeModBtn.onclick = () => document.getElementById('courseModal').classList.remove('active');
+    if (closeModBtn) {
+        closeModBtn.onclick = () => document.getElementById('courseModal').classList.remove('active');
+    }
 });
