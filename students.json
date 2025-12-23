@@ -3,21 +3,29 @@
     "id": "work-1",
     "studentName": "Amina H.",
     "project": "Bridal Couture",
-    "image": "assets/student-work1.jpg",
+    "image": "assets/gallery-1.jpg",
     "description": "Exquisite hand-stitched detailing and silk draping."
   },
   {
     "id": "work-2",
     "studentName": "Omar D.",
     "project": "Streetwear Collection",
-    "image": "assets/student-work2.jpg",
+    "image": "assets/gallery-2.jpg",
     "description": "Modern silhouettes inspired by urban architecture."
   },
   {
     "id": "work-3",
     "studentName": "Leyla S.",
     "project": "Traditional Fusion",
-    "image": "assets/student-work3.jpg",
+    "image": "assets/gallery-3.jpg",
+    "description": "Blending heritage patterns with contemporary tailoring."
+  },
+   {
+    "id": "work-3",
+    "studentName": "Luula S.",
+    "project": "beautiful sketch",
+    "image": "assets/gallery-4.jpg",
     "description": "Blending heritage patterns with contemporary tailoring."
   }
+
 ]
