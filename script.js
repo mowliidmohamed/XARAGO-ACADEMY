@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const syllabusList = document.getElementById('modalSyllabus');
         syllabusList.innerHTML = course.syllabus.map(item => `<li>${item}</li>`).join('');
-        modal.style.display = 'flex';
+        modal.classList.add('active');
     };
 
     window.openZoom = function(imageSrc) {
@@ -103,5 +103,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Modal Close
     const closeModBtn = document.querySelector('.close-modal');
-    if (closeModBtn) closeModBtn.onclick = () => document.getElementById('courseModal').style.display = 'none';
+    if (closeModBtn) closeModBtn.onclick = () => document.getElementById('courseModal').classList.remove('active');
 });
