@@ -26,11 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (e) { console.error("Gallery Error:", e); }
     }
-    // --- ENROLL POPUP LOGIC ---
+// --- ENROLL POPUP LOGIC ---
 const enrollPopup = document.getElementById('enrollPopup');
 const enrollBtn = document.querySelector('.cta-mini'); // navbar Enroll Now button
 const closeEnrollBtn = document.querySelector('.close-enroll');
+const courseCheckboxes = document.querySelectorAll('#enrollForm input[name="course"]');
+const selectedCoursesDiv = document.getElementById('selectedCourses');
+const totalAmountSpan = document.getElementById('totalAmount');
 
+// Open popup
 if (enrollBtn && enrollPopup) {
   enrollBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -39,6 +43,7 @@ if (enrollBtn && enrollPopup) {
   });
 }
 
+// Close popup with fade-out
 function closeEnroll() {
   if (enrollPopup.classList.contains('active')) {
     enrollPopup.classList.add('fade-out');
@@ -48,20 +53,33 @@ function closeEnroll() {
     }, 500);
   }
 }
-
-if (closeEnrollBtn) {
-  closeEnrollBtn.addEventListener('click', closeEnroll);
-}
-
+if (closeEnrollBtn) closeEnrollBtn.addEventListener('click', closeEnroll);
 if (enrollPopup) {
   enrollPopup.addEventListener('click', (e) => {
     if (e.target === enrollPopup) closeEnroll();
   });
 }
-
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && enrollPopup) closeEnroll();
 });
+
+// Tuition calculator
+function updateTuition() {
+  let total = 0;
+  let listHTML = "";
+  courseCheckboxes.forEach(item => {
+    if (item.checked) {
+      total += parseInt(item.value) || 0;
+      listHTML += `<div style="display:flex; justify-content:space-between;">
+                     <span>${item.getAttribute('data-name')}</span>
+                     <span>$${item.value}</span>
+                   </div>`;
+    }
+  });
+  selectedCoursesDiv.innerHTML = listHTML || '<p>Select a module.</p>';
+  totalAmountSpan.innerText = `$${total.toFixed(2)}`;
+}
+courseCheckboxes.forEach(box => box.addEventListener('change', updateTuition));
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- POPUP LOGIC ---

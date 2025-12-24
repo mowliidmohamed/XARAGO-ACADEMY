@@ -186,22 +186,34 @@
   <div class="popup-content">
     <span class="close-enroll">&times;</span>
     <h2>Course Enrollment</h2>
-    <p>Select your modules and complete registration below:</p>
+    <p>Please fill in your details and select your modules:</p>
+
     <form id="enrollForm">
-      <label>
-        <input type="checkbox" name="course" value="450"> Pattern Making & Draping ($450)
-      </label><br>
-      <label>
-        <input type="checkbox" name="course" value="600"> Digital CAD (CLO 3D) ($600)
-      </label><br>
-      <label>
-        <input type="checkbox" name="course" value="350"> Textile & Fabric Science ($350)
-      </label><br>
-      <input type="email" placeholder="Your email address" required><br>
+      <!-- Personal Info -->
+      <input type="text" id="firstName" placeholder="First Name" required><br>
+      <input type="text" id="secondName" placeholder="Second Name" required><br>
+      <input type="text" id="thirdName" placeholder="Third Name" required><br>
+      <input type="tel" id="phoneNumber" placeholder="Phone Number" required><br>
+      <input type="email" id="emailAddress" placeholder="Email Address" required><br><br>
+
+      <!-- Course Selection -->
+      <h3>Select Your Modules</h3>
+      <label><input type="checkbox" name="course" value="450" data-name="Pattern Making & Draping"> Pattern Making & Draping ($450)</label><br>
+      <label><input type="checkbox" name="course" value="600" data-name="Digital CAD (CLO 3D)"> Digital CAD (CLO 3D) ($600)</label><br>
+      <label><input type="checkbox" name="course" value="350" data-name="Textile & Fabric Science"> Textile & Fabric Science ($350)</label><br>
+      <label><input type="checkbox" name="course" value="400" data-name="Fashion Illustration"> Fashion Illustration ($400)</label><br>
+      <label><input type="checkbox" name="course" value="500" data-name="Garment Construction"> Garment Construction ($500)</label><br>
+      <label><input type="checkbox" name="course" value="300" data-name="History of Fashion"> History of Fashion ($300)</label><br><br>
+
+      <!-- Tuition Summary -->
+      <div id="selectedCourses"><p>Select a module.</p></div>
+      <div class="total-row"><strong>Total:</strong> <span id="totalAmount">$0.00</span></div><br>
+
       <button type="submit" class="btn-enroll">Complete Registration</button>
     </form>
   </div>
 </div>
+
 
 
     <script src="script.js"></script>
