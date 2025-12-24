@@ -494,5 +494,25 @@ h1, h2 {
 .course-list input[type="checkbox"] {
   margin-right: 10px;
 }
+.enroll-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.enroll-image {
+  margin-top: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.enroll-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
 
 
