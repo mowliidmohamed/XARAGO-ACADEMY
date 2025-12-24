@@ -26,6 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (e) { console.error("Gallery Error:", e); }
     }
+const enrollForm = document.getElementById('enrollForm');
+const successMessage = document.getElementById('successMessage');
+
+if (enrollForm) {
+  enrollForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(enrollForm);
+    const response = await fetch(enrollForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      enrollForm.style.display = 'none'; // hide form
+      successMessage.style.display = 'block'; // show success
+    } else {
+      alert("Oops! Something went wrong. Please try again.");
+    }
+  });
+}
+
 // --- ENROLL POPUP LOGIC ---
 const enrollPopup = document.getElementById('enrollPopup');
 const enrollBtn = document.querySelector('.cta-mini'); // navbar Enroll Now button

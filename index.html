@@ -188,7 +188,7 @@
     <h2>Course Enrollment</h2>
     <p>Please fill in your details and select your modules:</p>
 
-    <form id="enrollForm" class="enroll-grid">
+    <form id="enrollForm" class="enroll-grid" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <!-- Left: Personal info -->
       <div class="enroll-left">
         <h3>Your Details</h3>
@@ -239,6 +239,10 @@
         <div class="total-row"><strong>Total:</strong> <span id="totalAmount">$0.00</span></div>
       </div>
     </form>
+<div id="successMessage" class="success-overlay" style="display:none;">
+  <h2>✅ Registration Successful</h2>
+  <p>Thank you for enrolling! We’ll contact you soon with details.</p>
+</div>
 
     <button type="submit" class="btn-enroll">Complete Registration</button>
   </div>

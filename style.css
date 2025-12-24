@@ -563,6 +563,24 @@ h1, h2 {
   .enroll-grid { grid-template-columns: 1fr; }
   #enrollPopup .popup-content { max-width: 95%; }
 }
+.success-overlay {
+  text-align: center;
+  padding: 30px;
+  background: #f0fff0;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+.success-overlay h2 {
+  color: #4CAF50;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 
 
