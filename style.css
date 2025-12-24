@@ -469,5 +469,30 @@ h1, h2 {
 .btn-enroll:hover {
   background: #333;
 }
+.course-list {
+  display: grid;
+  grid-template-columns: 1fr; /* single column inside right section */
+  gap: 10px;
+}
+
+.course-list label {
+  display: flex; 
+  justify-content: space-between; /* align text left, price right */
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.course-list label:hover {
+  background: #f9f9f9;
+}
+
+.course-list input[type="checkbox"] {
+  margin-right: 10px;
+}
 
 
