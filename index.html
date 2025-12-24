@@ -188,9 +188,10 @@
     <h2>Course Enrollment</h2>
     <p>Please fill in your details and select your modules:</p>
 
-    <form id="enrollForm">
-      <!-- Personal Info in two-column grid -->
-      <div class="form-grid">
+    <form id="enrollForm" class="enroll-grid">
+      <!-- Left Section: Personal Info -->
+      <div class="enroll-left">
+        <h3>Your Details</h3>
         <input type="text" id="firstName" placeholder="First Name" required>
         <input type="text" id="secondName" placeholder="Second Name" required>
         <input type="text" id="thirdName" placeholder="Third Name" required>
@@ -198,23 +199,25 @@
         <input type="email" id="emailAddress" placeholder="Email Address" required>
       </div>
 
-      <!-- Course Selection -->
-      <h3>Select Your Modules</h3>
-      <div class="course-list">
-        <label><input type="checkbox" name="course" value="450" data-name="Pattern Making & Draping"> Pattern Making & Draping ($450)</label>
-        <label><input type="checkbox" name="course" value="600" data-name="Digital CAD (CLO 3D)"> Digital CAD (CLO 3D) ($600)</label>
-        <label><input type="checkbox" name="course" value="350" data-name="Textile & Fabric Science"> Textile & Fabric Science ($350)</label>
-        <label><input type="checkbox" name="course" value="400" data-name="Fashion Illustration"> Fashion Illustration ($400)</label>
-        <label><input type="checkbox" name="course" value="500" data-name="Garment Construction"> Garment Construction ($500)</label>
-        <label><input type="checkbox" name="course" value="300" data-name="History of Fashion"> History of Fashion ($300)</label>
+      <!-- Right Section: Courses -->
+      <div class="enroll-right">
+        <h3>Select Modules</h3>
+        <div class="course-list">
+          <label><input type="checkbox" name="course" value="450" data-name="Pattern Making & Draping"> Pattern Making & Draping ($450)</label>
+          <label><input type="checkbox" name="course" value="600" data-name="Digital CAD (CLO 3D)"> Digital CAD (CLO 3D) ($600)</label>
+          <label><input type="checkbox" name="course" value="350" data-name="Textile & Fabric Science"> Textile & Fabric Science ($350)</label>
+          <label><input type="checkbox" name="course" value="400" data-name="Fashion Illustration"> Fashion Illustration ($400)</label>
+          <label><input type="checkbox" name="course" value="500" data-name="Garment Construction"> Garment Construction ($500)</label>
+          <label><input type="checkbox" name="course" value="300" data-name="History of Fashion"> History of Fashion ($300)</label>
+        </div>
+
+        <!-- Tuition Summary -->
+        <div id="selectedCourses" class="summary-box"><p>Select a module.</p></div>
+        <div class="total-row"><strong>Total:</strong> <span id="totalAmount">$0.00</span></div>
       </div>
-
-      <!-- Tuition Summary -->
-      <div id="selectedCourses" class="summary-box"><p>Select a module.</p></div>
-      <div class="total-row"><strong>Total:</strong> <span id="totalAmount">$0.00</span></div>
-
-      <button type="submit" class="btn-enroll">Complete Registration</button>
     </form>
+
+    <button type="submit" class="btn-enroll">Complete Registration</button>
   </div>
 </div>
 
