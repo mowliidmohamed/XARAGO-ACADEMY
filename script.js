@@ -26,6 +26,52 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (e) { console.error("Gallery Error:", e); }
     }
+document.addEventListener('DOMContentLoaded', () => {
+    // --- POPUP LOGIC ---
+    const popupOverlay = document.querySelector('.popup-overlay');
+    const openPopupBtn = document.getElementById('openPopup'); // trigger button
+    const closePopupBtn = document.querySelector('.close-popup');
+
+    // Auto show popup after 5 seconds
+    if (popupOverlay) {
+        setTimeout(() => {
+            popupOverlay.classList.add('active');
+        }, 5000);
+    }
+
+    // Manual trigger via footer button
+    if (openPopupBtn && popupOverlay) {
+        openPopupBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            popupOverlay.classList.add('active');
+        });
+    }
+
+    // Close popup with fade-out 
+    function closePopup() { 
+    if (popupOverlay.classList.contains('active')) { 
+    popupOverlay.classList.add('fade-out'); 
+    // Wait for transition to finish before hiding 
+    setTimeout(() => { 
+    popupOverlay.classList.remove('active'); 
+    popupOverlay.classList.remove('fade-out'); 
+    }, 500); // matches CSS transition duration 
+  } 
+} if (closePopupBtn && popupOverlay) { 
+    closePopupBtn.addEventListener('click', closePopup); 
+} 
+if (popupOverlay) { popupOverlay.addEventListener('click', (e) => { 
+    if (e.target === popupOverlay) closePopup();
+     }); 
+} 
+ document.addEventListener('keydown', (e) => { 
+    if (e.key === 'Escape' && popupOverlay) closePopup(); 
+});
+
+    // --- Keep your other code (student work, courses, enrollment, etc.) ---
+    // loadStudentWork();
+    // loadCourses();
+});
 
     // --- 2. LOAD COURSES ---
     async function loadCourses() {
