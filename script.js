@@ -26,6 +26,43 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (e) { console.error("Gallery Error:", e); }
     }
+    // --- ENROLL POPUP LOGIC ---
+const enrollPopup = document.getElementById('enrollPopup');
+const enrollBtn = document.querySelector('.cta-mini'); // navbar Enroll Now button
+const closeEnrollBtn = document.querySelector('.close-enroll');
+
+if (enrollBtn && enrollPopup) {
+  enrollBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    enrollPopup.classList.add('active');
+    enrollPopup.classList.remove('fade-out');
+  });
+}
+
+function closeEnroll() {
+  if (enrollPopup.classList.contains('active')) {
+    enrollPopup.classList.add('fade-out');
+    setTimeout(() => {
+      enrollPopup.classList.remove('active');
+      enrollPopup.classList.remove('fade-out');
+    }, 500);
+  }
+}
+
+if (closeEnrollBtn) {
+  closeEnrollBtn.addEventListener('click', closeEnroll);
+}
+
+if (enrollPopup) {
+  enrollPopup.addEventListener('click', (e) => {
+    if (e.target === enrollPopup) closeEnroll();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && enrollPopup) closeEnroll();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- POPUP LOGIC ---
     const popupOverlay = document.querySelector('.popup-overlay');
