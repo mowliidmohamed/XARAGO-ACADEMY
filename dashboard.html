@@ -47,6 +47,42 @@
       <h2>Announcements</h2>
       <p>🎉 New module on Draping Techniques released!</p>
     </section>
+    <section class="courses">
+  <h2>Your Courses</h2>
+  <ul>
+    <li>Loading courses...</li>
+  </ul>
+</section>
+
   </main>
+  <script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const coursesContainer = document.querySelector(".courses ul");
+
+  try {
+    const response = await fetch("courses.json");
+    const courses = await response.json();
+
+    coursesContainer.innerHTML = ""; // clear placeholder
+
+    courses.forEach(course => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${course.title}</strong> ($${course.price})<br>
+        <a href="${course.materials.pdf}" target="_blank">📄 PDF</a>
+        <a href="${course.materials.quiz}" target="_blank">📝 Quiz</a>
+        <ul>
+          ${course.materials.modules.map(m => `<li>${m}</li>`).join("")}
+        </ul>
+      `;
+      coursesContainer.appendChild(li);
+    });
+  } catch (err) {
+    coursesContainer.innerHTML = "<p>⚠️ Could not load courses.</p>";
+    console.error(err);
+  }
+});
+</script>
+
 </body>
 </html>
