@@ -7,7 +7,11 @@
     "level": "Beginner",
     "description": "Master the art of transforming 2D sketches into 3D garments.",
     "duration": "4 Weeks",
-    "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
+    "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"],
+    "materials": { "pdf": "assets/materials/pattern.pdf", 
+    "quiz": "assets/quizzes/pattern-quiz.html", 
+    "modules": [ "Introduction to Pattern Making", 
+      "Draping Techniques", "Final Project" ]
   },
   {
     "id": "digital-cad",
@@ -17,7 +21,11 @@
     "level": "Intermediate",
     "description": "Learn industry-standard 3D prototyping and virtual fitting.",
     "duration": "4 Weeks",
-    "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"]
+    "syllabus": ["Anatomy & Measurements", "Block Foundation", "Slash & Spread Techniques", "3D Draping on Form"],
+    "materials": { "pdf": "assets/materials/pattern.pdf", 
+    "quiz": "assets/quizzes/pattern-quiz.html", 
+    "modules": [ "Introduction to Pattern Making", 
+      "Draping Techniques", "Final Project" ]
   },
   {
     "id": "fashion-illustration",
@@ -27,7 +35,11 @@
     "level": "Beginner",
     "duration": "4 Weeks",
     "description": "Learn to sketch your designs with professional proportions.",
-    "syllabus": ["Hand Sketching", "Color Theory", "Fabric Rendering", "Portfolio Layout"]
+    "syllabus": ["Hand Sketching", "Color Theory", "Fabric Rendering", "Portfolio Layout"],
+    "materials": { "pdf": "assets/materials/pattern.pdf", 
+    "quiz": "assets/quizzes/pattern-quiz.html", 
+    "modules": [ "Introduction to Pattern Making", 
+      "Draping Techniques", "Final Project" ]
   },
   {
     "id": "textile-science",
@@ -37,7 +49,11 @@
     "level": "Beginner",
     "duration": "4 Weeks",
     "description": "Understand fiber properties, weaves, and sustainable fabric sourcing for your collections.",
-    "syllabus": ["Fiber Classification", "Yarn Production", "Fabric Construction", "Dyeing & Finishing"]
+    "syllabus": ["Fiber Classification", "Yarn Production", "Fabric Construction", "Dyeing & Finishing"],
+    "materials": { "pdf": "assets/materials/pattern.pdf", 
+    "quiz": "assets/quizzes/pattern-quiz.html", 
+    "modules": [ "Introduction to Pattern Making", 
+      "Draping Techniques", "Final Project" ]
   },
   {
     "id": "fashion-marketing",
@@ -47,7 +63,11 @@
     "level": "Intermediate",
     "duration": "4 Weeks",
     "description": "Learn how to build a brand identity and market your studio to the right audience.",
-    "syllabus": ["Brand Storytelling", "Social Media Strategy", "Pricing for Profit", "Fashion PR"]
+    "syllabus": ["Brand Storytelling", "Social Media Strategy", "Pricing for Profit", "Fashion PR"],
+    "materials": { "pdf": "assets/materials/pattern.pdf", 
+    "quiz": "assets/quizzes/pattern-quiz.html", 
+    "modules": [ "Introduction to Pattern Making", 
+      "Draping Techniques", "Final Project" ]
   },
   {
     "id": "couture-sewing",
@@ -57,7 +77,12 @@
     "level": "Advanced",
     "duration": "5 Weeks",
     "description": "Master high-end finishing techniques used in luxury fashion houses.",
-    "syllabus": ["Hand-Stitched Hems", "Corsetry Basics", "Lining & Interfacing", "Luxury Fabric Handling"]
+    "syllabus": ["Hand-Stitched Hems", "Corsetry Basics", "Lining & Interfacing", "Luxury Fabric Handling"],
+    "materials": { "pdf": "assets/materials/pattern.pdf", 
+    "quiz": "assets/quizzes/pattern-quiz.html", 
+    "modules": [ "Introduction to Pattern Making", 
+      "Draping Techniques", "Final Project" ]
   }
 ]
+
 
