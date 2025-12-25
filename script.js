@@ -48,6 +48,32 @@ if (enrollForm) {
     }
   });
 }
+const enrollForm = document.getElementById('enrollForm');
+const successMessage = document.getElementById('successMessage');
+
+if (enrollForm) {
+  enrollForm.addEventListener('submit', async function(e) {
+    e.preventDefault(); // stop browser redirect
+
+    const formData = new FormData(enrollForm);
+    try {
+      const response = await fetch(enrollForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        enrollForm.style.display = 'none';   // hide form
+        successMessage.style.display = 'block'; // show success overlay
+      } else {
+        alert("Oops! Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error. Please try again later.");
+    }
+  });
+}
 
 // --- ENROLL POPUP LOGIC ---
 const enrollPopup = document.getElementById('enrollPopup');
