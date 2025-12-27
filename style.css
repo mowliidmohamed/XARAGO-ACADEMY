@@ -257,3 +257,54 @@ h1, h2, h3 {
   .enroll-grid, .contact-grid { grid-template-columns: 1fr; }
   .popup-flex { flex-direction: column; }
 }
+/* Dashboard Specific Layout */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  padding: 40px 5%;
+  background: #fdfdfd;
+}
+
+.dashboard section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+
+.dashboard h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #d4af37;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.courses ul {
+  list-style: none;
+  padding: 0;
+}
+
+.courses li {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.courses a {
+  display: inline-block;
+  margin: 10px 10px 10px 0;
+  padding: 5px 12px;
+  background: #eee;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.courses a:hover {
+  background: #d4af37;
+  color: #fff;
+}
