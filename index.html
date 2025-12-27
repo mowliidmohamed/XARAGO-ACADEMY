@@ -7,31 +7,56 @@
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo">XARAGO</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#courses">Courses</a></li>
-      <li><a href="#portfolio">Gallery</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <!-- Enroll Now: opens enrollment popup -->
-      <li><a href="#enroll" id="openEnrollBtn" class="cta-mini">Enroll Now</a></li>
-      <!-- Go to Student Dashboard (login/signup flow) -->
-      <li><a href="login.html" class="cta-mini">Student Dashboard</a></li>
-    </ul>
-  </nav>
+<nav class="navbar">
+  <div class="logo">XARAGO</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#portfolio">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <!-- ✅ Enroll Now trigger -->
+    <li><a href="#enroll" id="openEnrollBtn" class="cta-mini">Enroll Now</a></li>
+    <li><a href="login.html" class="cta-mini">Student Dashboard</a></li>
+  </ul>
+</nav>
 
-  <!-- Hero -->
-  <header id="home" class="hero">
-    <div class="hero-content">
-      <h1>Master the Architecture of Style</h1>
-      <p>Bridging traditional craftsmanship with digital innovation.</p>
-      <div class="hero-btns">
-        <a href="#courses" class="btn-primary">Explore Courses</a>
-        <a href="#contact" class="btn-secondary">Book a Tour</a>
+<!-- ✅ Enroll popup overlay (hidden by default) -->
+<div id="enrollPopup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="close-enroll">&times;</span>
+    <h2>Enroll in Courses</h2>
+    <div class="enroll-grid">
+      <div class="enroll-left">
+        <h3>Student info</h3>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email">
+        <input type="tel" placeholder="Phone">
+      </div>
+      <div class="enroll-right">
+        <h3>Select courses</h3>
+        <div class="course-list">
+          <label><input type="checkbox" data-price="450"> Pattern Making & Draping <span>$15</span></label>
+          <label><input type="checkbox" data-price="600"> Digital CAD (CLO 3D) <span>$15</span></label>
+          <label><input type="checkbox" data-price="350"> Construction & sewing <span>$15</span></label>
+          <label><input type="checkbox" data-price="350"> Fashion illustration <span>$15</span></label>
+          <label><input type="checkbox" data-price="350"> Fashion styling and brading <span>15</span></label>
+          <label><input type="checkbox" data-price="350"> Textile & Fabric Science<span>$15</span></label>
+        </div>
+        <div class="summary-box">
+          <div>Selected:</div>
+          <ul id="selectedCourses"></ul>
+          <div class="total-row">
+            <strong>Total</strong>
+            <strong id="totalAmount">$0</strong>
+          </div>
+        </div>
+        <button class="btn-enroll">Complete Registration</button>
       </div>
     </div>
+  </div>
+</div>
+
   </header>
 
   <!-- Curriculum Pillars (six) -->
@@ -98,26 +123,26 @@
           <h3>Select Your Modules</h3>
 
           <label class="course-item">
-            <input type="checkbox" name="course" value="450" data-name="Pattern Making & Draping">
+            <input type="checkbox" name="course" value="15" data-name="Pattern Making & Draping">
             <div class="course-info">
               <strong>Pattern Making & Draping</strong>
-              <span>$450.00</span>
+              <span>$15</span>
             </div>
           </label>
 
           <label class="course-item">
-            <input type="checkbox" name="course" value="600" data-name="Digital CAD (CLO 3D)">
+            <input type="checkbox" name="course" value="15" data-name="Digital CAD (CLO 3D)">
             <div class="course-info">
               <strong>Digital CAD (CLO 3D)</strong>
-              <span>$600.00</span>
+              <span>$15</span>
             </div>
           </label>
 
           <label class="course-item">
-            <input type="checkbox" name="course" value="350" data-name="Textile & Fabric Science">
+            <input type="checkbox" name="course" value="15" data-name="Textile & Fabric Science">
             <div class="course-info">
               <strong>Textile & Fabric Science</strong>
-              <span>$350.00</span>
+              <span>$15</span>
             </div>
           </label>
         </div>
@@ -189,21 +214,39 @@
 
   <!-- Footer -->
   <footer class="main-footer">
-    <div class="footer-content">
-      <div class="footer-logo">THE ATELIER</div>
-
-      <div class="social-picture-links">
-        <a href="#"><img src="assets/icon-ig.png" alt="Instagram"></a>
-        <a href="#"><img src="assets/icon-pin.png" alt="Pinterest"></a>
-        <a href="#"><img src="assets/icon-fb.png" alt="Facebook"></a>
-        <a href="#"><img src="assets/icon-wh.png" alt="WhatsApp"></a>
-      </div>
-
-      <p class="footer-tagline">Where tradition meets the future of design.</p>
-      <!-- Newsletter trigger button under social links -->
-      <button class="newsletter-btn" id="openNewsletterBtn">Subscribe to Newsletter</button>
+  <div class="footer-content">
+    <div class="footer-logo">THE ATELIER</div>
+    <div class="social-picture-links">
+      <a href="#"><img src="assets/icon-ig.png" alt="Instagram"></a>
+      <a href="#"><img src="assets/icon-pin.png" alt="Pinterest"></a>
+      <a href="#"><img src="assets/icon-fb.png" alt="Facebook"></a>
+      <a href="#"><img src="assets/icon-wh.png" alt="WhatsApp"></a>
     </div>
-  </footer>
+    <p class="footer-tagline">Where tradition meets the future of design.</p>
+    <!-- ✅ Newsletter trigger button -->
+    <button class="newsletter-btn" id="openNewsletterBtn">Subscribe to Newsletter</button>
+  </div>
+</footer>
+
+<!-- ✅ Newsletter popup overlay (hidden by default) -->
+<div id="newsletterPopup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="close-popup">&times;</span>
+    <div class="popup-flex">
+      <div class="popup-image" style="background-image: url('assets/popup-img.jpg');"></div>
+      <div class="popup-text">
+        <span class="popup-label">The Atelier Journal</span>
+        <h2>Elevate Your Craft</h2>
+        <p>Join 5,000+ designers. Receive our weekly guide on fabric trends and CAD secrets.</p>
+        <form id="newsletterForm">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit" class="btn-subscribe">Join Now</button>
+        </form>
+        <p class="popup-footer">Strictly inspiration. No spam.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Course modal -->
   <div id="courseModal" class="modal-overlay">
