@@ -1,5 +1,5 @@
 /* =========================
-   General Reset
+   General Reset & Base
 ========================= */
 * {
   margin: 0;
@@ -15,10 +15,15 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
 }
 
 /* =========================
@@ -45,23 +50,23 @@ h1, h2 {
 .nav-links {
   display: flex;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links li a {
   text-decoration: none;
   color: #1a1a1a;
-  margin: 0 20px;
-  font-size: 0.9rem;
+  margin: 0 15px;
+  font-size: 0.85rem;
   font-weight: 600;
   transition: 0.3s;
 }
 
 .cta-mini {
   background: #000;
-  color: #fff;
+  color: #fff !important;
   padding: 10px 20px;
-  text-decoration: none;
-  font-size: 0.8rem;
+  margin-left: 10px;
 }
 
 /* =========================
@@ -69,12 +74,7 @@ h1, h2 {
 ========================= */
 .hero {
   height: 100vh;
-  width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/hero-bg.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,10 +82,7 @@ h1, h2 {
   color: #fff;
 }
 
-.hero h1 {
-  font-size: 4rem;
-  margin-bottom: 20px;
-}
+.hero h1 { font-size: 4rem; margin-bottom: 20px; }
 
 .btn-primary {
   background: #fff;
@@ -93,265 +90,170 @@ h1, h2 {
   padding: 15px 35px;
   text-decoration: none;
   display: inline-block;
+  font-weight: bold;
 }
 
 /* =========================
-   Curriculum Pillars
+   Curriculum Pillars (Dynamic)
 ========================= */
-.pillars {
-  padding: 100px 5%;
-  background: #f9f9f9;
-}
+.pillars { padding: 100px 5%; background: #f9f9f9; }
 
 .pillar-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
-  margin-top: 50px;
 }
 
 .pillar-card {
-  height: 500px;
+  height: 450px;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   align-items: flex-end;
   padding: 30px;
-  transition: 0.5s;
   position: relative;
   cursor: pointer;
-  z-index: 1;
+  transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
-.pillar-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  z-index: -1;
-}
+.pillar-card:hover { transform: translateY(-10px); }
 
-.pillar-card h3 {
-  color: #fff;
-  font-size: 1.5rem;
-  font-family: 'Playfair Display', serif;
-}
+.pillar-content { position: relative; z-index: 2; color: #fff; }
 
 /* =========================
-   About Section
+   Student Gallery
 ========================= */
-.about {
-  padding: 100px 5%;
-  text-align: center;
-}
-
-.about-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* =========================
-   Gallery Section
-========================= */
-.portfolio {
-  padding: 100px 5%;
-  text-align: center;
-}
+.portfolio { padding: 100px 5%; text-align: center; }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
-  padding: 40px 0;
+  margin-top: 40px;
 }
 
 .gallery-item {
-  background: #ffffff;
-  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  transition: 0.3s;
+  text-align: left;
 }
 
-.gallery-img-container {
-  width: 100%;
-  height: 350px;
-  overflow: hidden;
-}
+.gallery-img-container { height: 300px; overflow: hidden; }
 
 .gallery-img-container img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
+  transition: 0.5s;
   cursor: zoom-in;
 }
 
-.work-info {
-  padding: 25px;
-  background: #fff;
-}
+.gallery-img-container img:hover { transform: scale(1.1); }
 
-.work-info h4 {
-  color: #1a1a1a;
-  margin-bottom: 5px;
-}
-
-.work-info p {
-  color: #d4af37;
-  font-weight: bold;
-}
+.work-info { padding: 20px; }
 
 /* =========================
-   Enrollment Section
+   Popups & Modals (Core Logic)
 ========================= */
-.enroll-container {
-  padding: 100px 5%;
-  background: #fdfdfd;
+.popup-overlay, .modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none; /* Controlled by JS */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(8px);
 }
 
-.form-layout {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 50px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.course-item {
-  display: flex;
-  gap: 15px;
-  padding: 20px;
-  border: 1px solid #eee;
-  margin-bottom: 15px;
+.popup-content, .modal-content {
   background: #fff;
-}
-
-.enrollment-summary {
-  background: #1a1a1a;
-  color: #fff;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
   padding: 40px;
-  height: fit-content;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
-/* =========================
-   Contact Section
-========================= */
-.contact-section {
-  padding: 100px 5%;
-  background: #fff;
+.close-enroll, .close-popup, .close-modal {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
 }
 
-.contact-grid {
+/* Enrollment Grid inside Popup */
+.enroll-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  max-width: 1200px;
-  margin: 40px auto;
+  gap: 40px;
+  margin-top: 30px;
 }
 
-.map-container iframe {
-  border-radius: 10px;
+.course-list label {
+  display: block;
+  padding: 15px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.summary-box {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid #000;
+  padding-top: 10px;
+  margin-top: 10px;
+  font-size: 1.2rem;
 }
 
 /* =========================
-   Footer
+   Footer & Contact
 ========================= */
 .main-footer {
   background: #1a1a1a;
   color: #fff;
-  padding: 60px 5%;
+  padding: 80px 5%;
   text-align: center;
-  clear: both;
 }
 
-.social-picture-links {
-  margin: 20px 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-picture-links a {
+.newsletter-btn {
+  background: transparent;
   color: #fff;
-  font-size: 1.5rem;
+  border: 1px solid #fff;
+  padding: 12px 25px;
+  margin-top: 20px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-/* =========================
-   Dashboard
-========================= */
-.dashboard {
+.newsletter-btn:hover { background: #fff; color: #000; }
+
+.contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  padding: 20px;
-}
-
-.dashboard section {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.dashboard h2 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.dashboard-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #000;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-.dashboard-btn:hover {
-  background: #444;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  padding: 50px 5%;
 }
 
 /* =========================
-   Auth Pages (Login & Signup)
+   Mobile Responsiveness
 ========================= */
-.auth-page {
-  margin: 0;
-  font-family: "Poppins", Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.5rem; }
+  .nav-links { display: none; } /* Add a mobile menu toggle if needed */
+  .enroll-grid, .contact-grid { grid-template-columns: 1fr; }
+  .popup-flex { flex-direction: column; }
 }
-
-.auth-page .login-box,
-.auth-page .signup-box {
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 350px;
-  text-align: center;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-.auth-page h2 {
-  margin-bottom: 20px;
-  color: #333;
-  font-weight: 600;
-}
-
-.auth-page input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius
