@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!gallery) return;
 
         try {
-            const response = await fetch('./student.json'); 
+            const response = await fetch('./students.json'); 
             const studentWork = await response.json();
 
             gallery.innerHTML = studentWork.map(work => `
