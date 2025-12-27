@@ -2,53 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Dashboard</title>
+  <title>Student Dashboard - Xarago Fashion Academy</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Welcome to Xarago Fashion Academy Dashboard</h1>
+    <h1>Welcome to Your Dashboard</h1>
     <p id="studentEmail"></p>
-    <button id="logoutBtn">Logout</button>
+    <button id="logoutBtn" class="dashboard-btn">Logout</button>
   </header>
-
-  <!-- ✅ Firebase SDKs (compat versions) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-  <script>
-    // ✅ Your Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyAntZ0xigv-91fR060PrJpdzOkNIEC4xvc",
-      authDomain: "xarago-fashion-academy.firebaseapp.com",
-      projectId: "xarago-fashion-academy",
-      storageBucket: "xarago-fashion-academy.appspot.com",
-      messagingSenderId: "477275067482",
-      appId: "1:477275067482:web:72a5cadb56d2c34526b463",
-      measurementId: "G-6X6WVMZ15K"
-    };
-
-    // ✅ Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    // ✅ Protect dashboard
-    auth.onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "login.html";
-      } else {
-        document.getElementById("studentEmail").innerText = user.email;
-      }
-    });
-
-    // ✅ Logout button
-    document.getElementById("logoutBtn").addEventListener("click", async () => {
-      await auth.signOut();
-      window.location.href = "login.html";
-    });
-  </script>
 
   <main class="dashboard">
     <!-- Profile Section -->
@@ -80,17 +42,48 @@
     </section>
   </main>
 
-  <!-- ✅ Load courses.json dynamically -->
+  <!-- Firebase SDKs (compat versions) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAntZ0xigv-91fR060PrJpdzOkNIEC4xvc",
+      authDomain: "xarago-fashion-academy.firebaseapp.com",
+      projectId: "xarago-fashion-academy",
+      storageBucket: "xarago-fashion-academy.appspot.com",
+      messagingSenderId: "477275067482",
+      appId: "1:477275067482:web:72a5cadb56d2c34526b463",
+      measurementId: "G-6X6WVMZ15K"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Protect dashboard
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      } else {
+        document.getElementById("studentEmail").innerText = user.email;
+      }
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await auth.signOut();
+      window.location.href = "login.html";
+    });
+
+    // Load courses.json
     document.addEventListener("DOMContentLoaded", async () => {
       const coursesContainer = document.querySelector(".courses ul");
-
       try {
         const response = await fetch("courses.json");
         const courses = await response.json();
-
-        coursesContainer.innerHTML = ""; // clear placeholder
-
+        coursesContainer.innerHTML = "";
         courses.forEach(course => {
           const li = document.createElement("li");
           li.innerHTML = `
