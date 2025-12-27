@@ -697,6 +697,27 @@ body {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* Only affects login & signup pages */
+.auth-page {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-page .login-box,
+.auth-page .signup-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 350px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
 
 
 
