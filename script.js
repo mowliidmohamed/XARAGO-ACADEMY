@@ -25,6 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Course Loading Error:", e); 
         }
     }
+    // History Modal Logic
+const historyModal = document.getElementById('historyModal');
+const openHistoryBtn = document.getElementById('openHistoryBtn');
+const closeHistoryBtn = document.getElementById('closeHistoryBtn');
+
+if (openHistoryBtn) {
+    openHistoryBtn.addEventListener('click', () => {
+        historyModal.style.display = 'flex';
+        historyModal.classList.add('active');
+    });
+}
+
+if (closeHistoryBtn) {
+    closeHistoryBtn.addEventListener('click', () => {
+        historyModal.style.display = 'none';
+        historyModal.classList.remove('active');
+    });
+}
+
+// Close on background click
+window.addEventListener('click', (e) => {
+    if (e.target === historyModal) {
+        historyModal.style.display = 'none';
+    }
+});
 
     // --- 2. COURSE MODAL LOGIC ---
     // Opens when a pillar card is clicked
