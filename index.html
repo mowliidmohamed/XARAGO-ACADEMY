@@ -157,38 +157,76 @@
   </div>
 
   <div id="enrollPopup" class="popup-overlay" style="display: none;">
-    <div class="popup-content">
-      <span class="close-enroll">×</span>
-      <h2>Enroll in Courses</h2>
-      <div class="enroll-grid">
-        <div class="enroll-left">
-          <h3>Student Info</h3>
-          <input type="text" placeholder="Full Name" required>
-          <input type="email" placeholder="Email" required>
-          <input type="tel" placeholder="Phone">
+  <div class="popup-content enroll-luxury-content">
+    <span class="close-enroll">×</span>
+    
+    <div class="enroll-header">
+      <h2>Academic Enrollment</h2>
+      <p class="auth-subtitle">Secure your place in the next cohort</p>
+    </div>
+
+    <div class="enroll-grid">
+      <div class="enroll-section">
+        <h3 class="enroll-step-title"><span>01</span> Student Details</h3>
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="e.g. Amina Duale" required>
         </div>
-        <div class="enroll-right">
-          <h3>Select Modules</h3>
-          <div class="course-list" id="popupCourseList">
-            <label><input type="checkbox" data-name="Pattern Making" data-price="15" value="Pattern Making"> Pattern Making <span>$15</span></label>
-            <label><input type="checkbox" data-name="Digital CAD" data-price="15" value="Digital CAD"> Digital CAD <span>$15</span></label>
-            <label><input type="checkbox" data-name="Fashion Sketching" data-price="15" value="Fashion Sketching"> Fashion Sketching <span>$15</span></label>
-            <label><input type="checkbox" data-name="Textile Science" data-price="15" value="Textile Science"> Textile Science <span>$15</span></label>
-            <label><input type="checkbox" data-name="Garment Construction" data-price="15" value="Garment Construction"> Construction <span>$15</span></label>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="email@example.com" required>
+        </div>
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+252 ...">
+        </div>
+        <div class="input-group">
+          <label>Experience Level</label>
+          <select>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="enroll-section">
+        <h3 class="enroll-step-title"><span>02</span> Select Modules</h3>
+        <div class="course-selection-list" id="popupCourseList">
+          <label class="course-checkbox-card">
+            <input type="checkbox" data-name="Pattern Making" data-price="15" value="Pattern Making">
+            <div class="checkbox-custom"></div>
+            <span class="course-name">Pattern Making & Draping</span>
+            <span class="course-cost">$15</span>
+          </label>
+          <label class="course-checkbox-card">
+            <input type="checkbox" data-name="Digital CAD" data-price="15" value="Digital CAD">
+            <div class="checkbox-custom"></div>
+            <span class="course-name">Digital CAD (CLO 3D)</span>
+            <span class="course-cost">$15</span>
+          </label>
+          <label class="course-checkbox-card">
+            <input type="checkbox" data-name="Fashion Sketching" data-price="15" value="Fashion Sketching">
+            <div class="checkbox-custom"></div>
+            <span class="course-name">Fashion Illustration</span>
+            <span class="course-cost">$15</span>
+          </label>
+        </div>
+
+        <div class="tuition-summary">
+          <div class="summary-header">Tuition Summary</div>
+          <ul id="popupSelectedCourses" class="selected-items-list">
+            </ul>
+          <div class="total-bar">
+            <span>Total Tuition</span>
+            <span id="popupTotalAmount">$0.00</span>
           </div>
-          <div class="summary-box">
-            <div>Selected:</div>
-            <ul id="popupSelectedCourses"></ul>
-            <div class="total-row">
-              <strong>Total</strong>
-              <strong id="popupTotalAmount">$0</strong>
-            </div>
-          </div>
-          <button class="btn-enroll">Complete Registration</button>
+          <button class="auth-btn" style="margin-top: 20px;">Complete Registration</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
   <div id="newsletterPopup" class="popup-overlay" style="display: none;">
     <div class="popup-content">
