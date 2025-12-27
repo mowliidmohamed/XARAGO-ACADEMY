@@ -12,13 +12,13 @@
     <button id="logoutBtn">Logout</button>
   </header>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <!-- ✅ Firebase SDKs (compat versions) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
   <script>
-    // ✅ Your Firebase config (replace placeholders with your real values)
+    // ✅ Your Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyAntZ0xigv-91fR060PrJpdzOkNIEC4xvc",
       authDomain: "xarago-fashion-academy.firebaseapp.com",
@@ -80,7 +80,7 @@
     </section>
   </main>
 
-  <!-- ✅ Load courses.json -->
+  <!-- ✅ Load courses.json dynamically -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const coursesContainer = document.querySelector(".courses ul");
