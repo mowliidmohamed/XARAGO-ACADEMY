@@ -402,3 +402,32 @@ h1, h2, h3 {
 .auth-footer-text a:hover {
   text-decoration: underline;
 }
+/* Footer Social Icons */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.social-links a img {
+  width: 24px;   /* Standard icon size */
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* This turns black icons white to match your dark footer */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.8;
+}
+
+.social-links a:hover img {
+  transform: translateY(-3px);
+  opacity: 1;
+  filter: none; /* Shows original icon colors on hover, or keep it white for luxury feel */
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 20px;
+}
