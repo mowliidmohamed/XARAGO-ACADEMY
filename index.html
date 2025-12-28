@@ -242,14 +242,16 @@
   </div>
 
   <div id="newsletterPopup" class="popup-overlay" style="display: none;">
-    <div class="popup-content" style="max-width: 400px; text-align: center; padding: 40px;">
-      <span class="close-popup" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 1.5rem;">×</span>
-      <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Join the Atelier</h2>
-      <p style="color: #666; margin-bottom: 20px;">Get exclusive fashion insights and course updates delivered to your inbox.</p>
-      <input type="email" placeholder="Your Email Address" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px;">
-      <button class="btn-primary" style="width: 100%;">Join Now</button>
+    <div class="popup-content">
+        <span class="close-popup" onclick="this.parentElement.parentElement.style.display='none'">×</span>
+        <h2>The Xarago Circle</h2>
+        <p>Subscribe to receive invitations to our digital runway shows and exclusive curriculum updates.</p>
+        <form id="newsletterForm">
+            <input type="email" placeholder="EMAIL ADDRESS" required>
+            <button type="submit" class="btn-primary">Subscribe</button>
+        </form>
     </div>
-  </div>
+</div>
 
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
