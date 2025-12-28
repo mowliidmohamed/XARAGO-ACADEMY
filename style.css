@@ -919,3 +919,67 @@ h1, h2, h3 {
         text-align: center;
     }
 }
+.methodology-section {
+    padding: 100px 20px;
+    background-color: #050505;
+    color: #fff;
+    text-align: center;
+}
+
+.method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.method-card {
+    padding: 40px;
+    background: #111;
+    border: 1px solid #222;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.method-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-10px);
+}
+
+.method-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: rgba(212, 175, 55, 0.1); /* Very faint gold */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-weight: 700;
+}
+
+.method-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+.method-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ccc;
+    position: relative;
+}
+
+.section-subtitle {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #d4af37;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
