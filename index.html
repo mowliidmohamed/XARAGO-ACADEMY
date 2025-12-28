@@ -6,19 +6,25 @@
   <title>Xarago Fashion Academy</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#d4af37">
-<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#d4af37">
+  
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('Xarago App Registered!', reg))
-        .catch(err => console.log('Registration Failed', err));
-    });
-  }
-</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // Changed '/sw.js' to 'sw.js' to fix 404 on GitHub Pages
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Xarago App Registered!', reg))
+          .catch(err => console.log('Registration Failed', err));
+      });
+    }
+  </script>
 </head>
 <body>
 
@@ -115,7 +121,7 @@
     <h2 class="section-title" style="text-align: center;">Visit the XARAGO HQ</h2>
     <div class="contact-grid">
       <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.608753234979!2d44.064!3d9.56!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMzMnMzYuMCJOIDQ0wrAwMzo0OC4wIkU!5e0!3m2!1sen!2s!4v1630000000000!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.608753234979!2d44.064!3d9.56!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMzMnMzYuMCJOIDQ0wrAwMyc1MC40IkU!5e0!3m2!1sen!2s!4v1630000000000" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
       <div class="contact-info">
         <h3>XARAGO HQ</h3>
@@ -199,24 +205,24 @@
           <h3 class="enroll-step-title"><span>02</span> Select Modules</h3>
           <div class="course-selection-list" id="popupCourseList">
             <label class="course-checkbox-card">
-              <input type="checkbox" data-name="Pattern Making & Draping" data-price="15" value="Pattern Making">
+              <input type="checkbox" data-name="Pattern Making & Draping" data-price="15" value="Pattern Making & Draping">
               <div class="checkbox-custom"></div>
               <span class="course-name">Pattern Making & Draping</span>
               <span class="course-cost">$15</span>
             </label>
             <label class="course-checkbox-card">
-              <input type="checkbox" data-name="Digital CAD (CLO 3D) & Adobe Illustrator" data-price="15" value="Digital CAD">
+              <input type="checkbox" data-name="Digital CAD (CLO 3D) & Adobe Illustrator" data-price="15" value="Digital CAD (CLO 3D) & Adobe Illustrator">
               <div class="checkbox-custom"></div>
-              <span class="course-name">Digital CAD (CLO 3D) & Adobe Illustrator</span>
+              <span class="course-name">Digital CAD & Illustrator</span>
               <span class="course-cost">$15</span>
             </label>
             <label class="course-checkbox-card">
-              <input type="checkbox" data-name="Fashion Sketching & Illustration" data-price="15" value="Fashion Sketching">
+              <input type="checkbox" data-name="Fashion Sketching & Illustration" data-price="15" value="Fashion Sketching & Illustration">
               <div class="checkbox-custom"></div>
               <span class="course-name">Fashion Sketching & Illustration</span>
               <span class="course-cost">$15</span>
             </label>
-          </div>
+            </div>
 
           <div class="tuition-summary">
             <div class="summary-header">Tuition Summary</div>
@@ -237,7 +243,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
   <script>
-    // Initialize Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAntZ0xigv-91fR060PrJpdzOkNIEC4xvc",
       authDomain: "xarago-fashion-academy.firebaseapp.com",
