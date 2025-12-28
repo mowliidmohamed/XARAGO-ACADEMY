@@ -351,3 +351,20 @@ h1, h2, h3 {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
     max-width: 1200px;
+}
+
+/* Critical Fix for Grid Collapse */
+.pillar-grid, .gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.pillar-card {
+    min-height: 450px; /* Prevents collapse if image fails */
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+}
