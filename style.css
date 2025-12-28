@@ -94,9 +94,9 @@ h1, h2, h3 {
 }
 
 /* =========================
-   Curriculum Pillars (Dynamic)
+   Curriculum Pillars
 ========================= */
-.pillars { padding: 100px 5%; background: #f9f9f9; }
+.pillars { padding: 80px 5%; background: #f9f9f9; }
 
 .pillar-grid {
   display: grid;
@@ -105,104 +105,120 @@ h1, h2, h3 {
 }
 
 .pillar-card {
-  height: 450px;
+  height: 400px;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: flex-end;
   padding: 30px;
   position: relative;
-  cursor: pointer;
   transition: transform 0.3s ease;
   overflow: hidden;
 }
 
 .pillar-card:hover { transform: translateY(-10px); }
 
-.pillar-content { position: relative; z-index: 2; color: #fff; }
-
 /* =========================
-   Methodology Section (The Academic Heart)
+   Methodology (Refined & Smaller)
 ========================= */
 .methodology-section {
-    padding: 120px 20px;
+    padding: 80px 5%; /* Reduced from 120px */
     background-color: #050505;
     color: #fff;
     text-align: center;
-    width: 100%;
 }
 
 .methodology-section .section-subtitle {
     display: block;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     color: #d4af37;
-    font-size: 0.8rem;
-    margin-bottom: 15px;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
 }
 
 .methodology-section .section-title {
     color: #fff;
-    margin-bottom: 60px;
+    font-size: 2rem; /* Reduced from 2.5rem */
+    margin-bottom: 40px;
 }
 
 .method-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .method-card {
-    padding: 50px 30px;
+    padding: 35px 25px; /* Smaller padding */
     background: #111;
     border: 1px solid #222;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: 0.4s ease;
     position: relative;
-    overflow: hidden;
     text-align: left;
 }
 
-.method-card:hover {
-    border-color: #d4af37;
-    transform: translateY(-10px);
-    background: #161616;
-}
+.method-card:hover { border-color: #d4af37; background: #161616; }
 
 .method-number {
     font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    color: rgba(212, 175, 55, 0.1);
+    font-size: 3.5rem; /* Smaller numbers */
+    color: rgba(212, 175, 55, 0.08);
     position: absolute;
-    top: -10px;
+    top: 5px;
     right: 15px;
     font-weight: 700;
-    z-index: 0;
 }
 
 .method-card h3 {
-    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
     color: #d4af37;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 12px;
 }
 
 .method-card p {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #ccc;
-    position: relative;
-    z-index: 1;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #bbb;
 }
+
+/* =========================
+   Professional About Section (Restored)
+========================= */
+.about-modern {
+  padding: 100px 8%;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.about-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-image-side { flex: 1; position: relative; }
+
+.main-img {
+  width: 100%;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 15px 15px 40px rgba(0,0,0,0.1);
+}
+
+.about-text-side { flex: 1; text-align: left; }
+
+.about-text-side h2 { color: #1a1a1a; font-size: 2.5rem; margin-bottom: 20px; }
 
 /* =========================
    Student Gallery
 ========================= */
-.portfolio { padding: 100px 5%; text-align: center; }
+.portfolio { padding: 100px 5%; text-align: center; background: #fff; }
 
 .gallery-grid {
   display: grid;
@@ -211,220 +227,27 @@ h1, h2, h3 {
   margin-top: 40px;
 }
 
-.gallery-item {
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: left;
-}
-
-.gallery-img-container { height: 300px; overflow: hidden; }
-
-.gallery-img-container img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: 0.5s;
-  cursor: zoom-in;
-}
-
-.gallery-img-container img:hover { transform: scale(1.1); }
-
-.work-info { padding: 20px; }
-
 /* =========================
-   Popups & Modals
-========================= */
-.popup-overlay, .modal-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: none; 
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  backdrop-filter: blur(8px);
-}
-
-.popup-content, .modal-content {
-  background: #fff;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  padding: 40px;
-  border-radius: 4px;
-}
-
-.close-enroll, .close-popup, .close-modal {
-  position: absolute;
-  top: 20px; right: 20px;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* =========================
-   Enrollment Grid inside Popup
-========================= */
-.enroll-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 30px;
-}
-
-.course-list label {
-  display: block;
-  padding: 15px;
-  border: 1px solid #eee;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-/* Custom Checkbox Cards */
-.course-checkbox-card {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border: 1px solid #eee;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    position: relative;
-}
-
-.course-checkbox-card:hover { border-color: #d4af37; background: #fffcf5; }
-.course-checkbox-card input { display: none; }
-
-.checkbox-custom {
-    width: 18px; height: 18px;
-    border: 2px solid #ddd;
-    margin-right: 15px;
-}
-
-.course-checkbox-card input:checked + .checkbox-custom {
-    background: #d4af37;
-    border-color: #d4af37;
-}
-
-.course-name { flex: 1; font-size: 0.85rem; font-weight: 600; color: #1a1a1a; }
-.course-cost { color: #d4af37; font-weight: bold; font-size: 0.85rem; }
-
-/* =========================
-   Footer & Contact
+   Popups & Footer
 ========================= */
 .main-footer {
-    background-color: #000;
-    color: #fff;
-    padding: 80px 20px 40px;
-    border-top: 1px solid #333;
-    text-align: center;
-}
-
-.footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    color: #d4af37;
-}
-
-.footer-tagline {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    color: #aaa;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.social-links img {
-    width: 22px;
-    height: 22px;
-    filter: brightness(0) invert(1);
-    transition: 0.3s;
-}
-
-.social-links img:hover {
-    transform: translateY(-5px);
-    filter: sepia(1) saturate(5) hue-rotate(10deg);
+  background: #000;
+  color: #fff;
+  padding: 60px 5% 20px;
+  text-align: center;
 }
 
 .footer-bottom {
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid #222;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #222;
 }
 
 .footer-bottom-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-size: 0.7rem;
-    color: #666;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.legal-links a { color: #666; text-decoration: none; margin: 0 10px; }
-.legal-links a:hover { color: #d4af37; }
-
-/* =========================
-   Newsletter Popup
-========================= */
-#newsletterPopup .popup-content {
-    background-color: #fff;
-    color: #111;
-    border-radius: 0;
-    padding: 60px;
-    position: relative;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-    border: 1px solid #d4af37;
-    text-align: center;
-}
-
-#newsletterPopup h2 { font-size: 2rem; margin-bottom: 10px; }
-#newsletterPopup p { color: #666; margin-bottom: 30px; text-transform: none; letter-spacing: 0; }
-
-#newsletterPopup input[type="email"] {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: none;
-    border-bottom: 2px solid #eee;
-    outline: none;
-}
-
-#newsletterPopup input[type="email"]:focus { border-bottom-color: #d4af37; }
-
-/* =========================
-   Dashboard & Auth
-========================= */
-.dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
-  padding: 40px 5%;
-  background: #fdfdfd;
-}
-
-.dashboard section {
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #666;
 }
 
 /* =========================
@@ -432,7 +255,6 @@ h1, h2, h3 {
 ========================= */
 @media (max-width: 768px) {
   .hero h1 { font-size: 2.5rem; }
-  .enroll-grid, .contact-grid, .footer-bottom-content { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
-  .about-wrapper { flex-direction: column; }
-  .history-grid { grid-template-columns: 1fr; }
+  .about-wrapper, .footer-bottom-content { flex-direction: column; text-align: center; }
+  .method-grid { grid-template-columns: 1fr; }
 }
