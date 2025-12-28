@@ -875,4 +875,47 @@ h1, h2, h3 {
 
 #newsletterPopup .close-popup:hover {
     color: #d4af37;
+
+    /* --- FOOTER LEGAL BAR --- */
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #222; /* Very subtle line */
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 0.7rem;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.legal-links a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+    color: #d4af37;
+}
+
+.separator {
+    margin: 0 10px;
+    color: #333;
+}
+
+/* Responsive fix for mobile */
+@media (max-width: 768px) {
+    .footer-bottom-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 }
