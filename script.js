@@ -25,34 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Course Loading Error:", e); 
         }
     }
-    // History Modal Logic
-const historyModal = document.getElementById('historyModal');
-const openHistoryBtn = document.getElementById('openHistoryBtn');
-const closeHistoryBtn = document.getElementById('closeHistoryBtn');
 
-if (openHistoryBtn) {
-    openHistoryBtn.addEventListener('click', () => {
-        historyModal.style.display = 'flex';
-        historyModal.classList.add('active');
-    });
-}
+    // --- 2. HISTORY MODAL LOGIC ---
+    const historyModal = document.getElementById('historyModal');
+    const openHistoryBtn = document.getElementById('openHistoryBtn');
+    const closeHistoryBtn = document.getElementById('closeHistoryBtn');
 
-if (closeHistoryBtn) {
-    closeHistoryBtn.addEventListener('click', () => {
-        historyModal.style.display = 'none';
-        historyModal.classList.remove('active');
-    });
-}
-
-// Close on background click
-window.addEventListener('click', (e) => {
-    if (e.target === historyModal) {
-        historyModal.style.display = 'none';
+    if (openHistoryBtn) {
+        openHistoryBtn.addEventListener('click', () => {
+            historyModal.style.display = 'flex';
+            historyModal.classList.add('active');
+        });
     }
-});
 
-    // --- 2. COURSE MODAL LOGIC ---
-    // Opens when a pillar card is clicked
+    if (closeHistoryBtn) {
+        closeHistoryBtn.addEventListener('click', () => {
+            historyModal.style.display = 'none';
+            historyModal.classList.remove('active');
+        });
+    }
+
+    // --- 3. COURSE MODAL LOGIC ---
     window.openCourseModal = function(course) {
         const modal = document.getElementById('courseModal');
         if (!modal) return;
@@ -70,7 +63,7 @@ window.addEventListener('click', (e) => {
         modal.classList.add('active');
     };
 
-    // --- 3. LOAD STUDENT WORK (Gallery) ---
+    // --- 4. LOAD STUDENT WORK (Gallery) ---
     async function loadStudentWork() {
         const gallery = document.getElementById('studentGallery');
         if (!gallery) return;
@@ -96,13 +89,13 @@ window.addEventListener('click', (e) => {
         }
     }
 
-    // --- 4. POPUP & MODAL CONTROLS ---
+    // --- 5. POPUP & MODAL CONTROLS ---
     const enrollPopup = document.getElementById('enrollPopup');
     const newsletterPopup = document.getElementById('newsletterPopup');
     const courseModal = document.getElementById('courseModal');
 
     function closeAll() {
-        [enrollPopup, newsletterPopup, courseModal].forEach(p => {
+        [enrollPopup, newsletterPopup, courseModal, historyModal].forEach(p => {
             if(p) {
                 p.style.display = 'none';
                 p.classList.remove('active');
@@ -110,24 +103,17 @@ window.addEventListener('click', (e) => {
         });
     }
 
-    // Close buttons (X)
     document.querySelectorAll('.close-enroll, .close-popup, .close-modal').forEach(btn => {
         btn.addEventListener('click', closeAll);
     });
 
-    // Close on overlay click (background)
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('popup-overlay') || e.target.classList.contains('modal-overlay')) {
             closeAll();
         }
     });
 
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeAll();
-    });
-
-    // --- 5. ENROLLMENT TRIGGER & CALCULATOR ---
+    // --- 6. ENROLLMENT & FIREBASE SAVE LOGIC ---
     const openEnrollBtn = document.getElementById('openEnrollBtn');
     if (openEnrollBtn) {
         openEnrollBtn.addEventListener('click', (e) => {
@@ -142,17 +128,56 @@ window.addEventListener('click', (e) => {
             const checks = Array.from(popupCourseList.querySelectorAll('input[type="checkbox"]'));
             const chosen = checks.filter(c => c.checked);
             
-            // Update the selected courses list UI
             const selectedList = document.getElementById('popupSelectedCourses');
             selectedList.innerHTML = chosen.map(c => `<li>${c.getAttribute('data-name')}</li>`).join('');
             
-            // Calculate total
             const total = chosen.reduce((sum, c) => sum + Number(c.getAttribute('data-price')), 0);
             document.getElementById('popupTotalAmount').textContent = `$${total.toFixed(2)}`;
         });
     }
 
-    // --- 6. NEWSLETTER AUTO-SHOW ---
+    // FIREBASE SAVE: When user clicks "Complete Registration"
+    const completeEnrollBtn = document.querySelector('.enroll-luxury-content .auth-btn');
+    if (completeEnrollBtn) {
+        completeEnrollBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            // 1. Check if logged in
+            const user = firebase.auth().currentUser;
+            if (!user) {
+                alert("Please log in or sign up first to enroll!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // 2. Get Selected Courses
+            const checks = Array.from(popupCourseList.querySelectorAll('input[type="checkbox"]:checked'));
+            const courseIds = checks.map(c => c.value); // Uses the checkbox "value"
+
+            if (courseIds.length === 0) {
+                alert("Please select at least one module.");
+                return;
+            }
+
+            try {
+                // 3. Save to Firestore under the User's Unique UID
+                await firebase.firestore().collection("enrollments").doc(user.uid).set({
+                    courses: courseIds,
+                    studentEmail: user.email,
+                    enrolledAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+
+                alert("Enrollment Successful! Your dashboard is now updated.");
+                closeAll();
+                window.location.href = "dashboard.html";
+            } catch (error) {
+                console.error("Firestore Error:", error);
+                alert("Error saving enrollment: " + error.message);
+            }
+        });
+    }
+
+    // --- 7. NEWSLETTER & INITIALIZATION ---
     if (newsletterPopup) {
         setTimeout(() => {
             if (!newsletterPopup.classList.contains('active')) {
@@ -162,21 +187,11 @@ window.addEventListener('click', (e) => {
         }, 5000);
     }
 
-    // Newsletter Button Trigger (Footer)
-    const openNewsletterBtn = document.getElementById('openNewsletterBtn');
-    if (openNewsletterBtn) {
-        openNewsletterBtn.addEventListener('click', () => {
-            newsletterPopup.style.display = 'flex';
-            newsletterPopup.classList.add('active');
-        });
-    }
-
-    // --- 7. INITIALIZE DATA ---
     loadCourses();
     loadStudentWork();
 });
 
-// --- 8. IMAGE ZOOM (Outside DOMContentLoaded for global onclick access) ---
+// --- 8. GLOBAL FUNCTIONS ---
 function openZoom(src) {
     let zoom = document.getElementById('imageZoom');
     if (!zoom) {

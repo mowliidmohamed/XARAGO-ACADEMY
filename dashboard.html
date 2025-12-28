@@ -6,43 +6,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to Your Dashboard</h1>
-    <p id="studentEmail"></p>
-    <button id="logoutBtn" class="dashboard-btn">Logout</button>
+  <header class="navbar" style="position: relative;">
+    <div class="logo">XARAGO ACADEMY</div>
+    <div class="nav-links">
+        <span id="headerEmail" style="margin-right: 20px; font-weight: bold;"></span>
+        <button id="logoutBtn" class="cta-mini" style="border:none; cursor:pointer;">Logout</button>
+    </div>
   </header>
 
   <main class="dashboard">
-    <!-- Profile Section -->
     <section class="profile">
       <h2>Your Profile</h2>
-      <p>Name: Student Name</p>
-      <p>Email: <span id="studentEmail"></span></p>
+      <p><strong>Status:</strong> Enrolled Student</p>
+      <p><strong>Email:</strong> <span id="profileEmail"></span></p>
     </section>
 
-    <!-- Courses Section -->
     <section class="courses">
-      <h2>Your Courses</h2>
-      <ul>
-        <li>Loading courses...</li>
+      <h2>Your Enrolled Courses</h2>
+      <ul id="courseList">
+        <li>Loading your academy access...</li>
       </ul>
     </section>
 
-    <!-- Progress Section -->
     <section class="progress">
       <h2>Progress Tracker</h2>
-      <p>Pattern Making: 60% complete</p>
-      <p>Digital CAD: 20% complete</p>
+      <div class="stat-item">
+        <p>Overall Completion</p>
+        <div style="background:#eee; height:10px; border-radius:5px; margin-top:5px;">
+            <div style="background:#d4af37; height:100%; width:45%; border-radius:5px;"></div>
+        </div>
+        <small>45% complete</small>
+      </div>
     </section>
 
-    <!-- Announcements -->
     <section class="announcements">
-      <h2>Announcements</h2>
+      <h2>Academy News</h2>
       <p>🎉 New module on Draping Techniques released!</p>
+      <p style="margin-top:10px; font-size: 0.8rem; color: #888;">Next Live Workshop: Saturday 10:00 AM</p>
     </section>
   </main>
 
-  <!-- Firebase SDKs (compat versions) -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -62,44 +65,70 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // Protect dashboard
-    auth.onAuthStateChanged(user => {
+    // 1. PROTECT DASHBOARD & RESTORE DATA
+    auth.onAuthStateChanged(async (user) => {
       if (!user) {
         window.location.href = "login.html";
       } else {
-        document.getElementById("studentEmail").innerText = user.email;
+        // Update Profile Info
+        document.getElementById("headerEmail").innerText = user.email;
+        document.getElementById("profileEmail").innerText = user.email;
+
+        // Fetch Enrolled Courses for this specific UID
+        loadEnrolledCourses(user.uid);
       }
     });
 
-    // Logout
+    // 2. FETCH & FILTER COURSES
+    async function loadEnrolledCourses(uid) {
+      const container = document.getElementById("courseList");
+      
+      try {
+        // Get the specific document named after the student's UID
+        const enrollDoc = await db.collection("enrollments").doc(uid).get();
+        
+        if (enrollDoc.exists) {
+          const enrolledCourseTitles = enrollDoc.data().courses; // Array of titles from popup
+
+          // Get full course data from JSON
+          const response = await fetch("courses.json");
+          const allCourses = await response.json();
+
+          // Filter: only show courses where the title matches the enrollment
+          const myCourses = allCourses.filter(course => enrolledCourseTitles.includes(course.title));
+
+          if (myCourses.length > 0) {
+            container.innerHTML = myCourses.map(course => `
+              <li style="margin-bottom: 25px; list-style:none; border-bottom:1px solid #eee; padding-bottom:15px;">
+                <strong style="font-size:1.1rem; color:#1a1a1a;">${course.title}</strong>
+                <div style="margin: 10px 0;">
+                    <a href="${course.materials.pdf}" target="_blank" class="dashboard-btn" style="text-decoration:none; background:#f4f4f4; padding:5px 12px; color:#333; font-size:0.8rem; margin-right:10px; border-radius:4px;">📄 View PDF</a>
+                    <a href="${course.materials.quiz}" target="_blank" class="dashboard-btn" style="text-decoration:none; background:#f4f4f4; padding:5px 12px; color:#333; font-size:0.8rem; border-radius:4px;">📝 Take Quiz</a>
+                </div>
+                <details style="font-size:0.85rem; color:#666; cursor:pointer;">
+                    <summary>View Modules</summary>
+                    <ul style="margin-top:10px; padding-left:20px;">
+                        ${course.materials.modules.map(m => `<li>${m}</li>`).join("")}
+                    </ul>
+                </details>
+              </li>
+            `).join("");
+          } else {
+            container.innerHTML = "<li>No active courses found. Please enroll from the main page.</li>";
+          }
+        } else {
+          container.innerHTML = "<li>You have not enrolled in any courses yet.</li>";
+        }
+      } catch (err) {
+        console.error("Error loading student courses:", err);
+        container.innerHTML = "<li>⚠️ Error loading courses. Please refresh.</li>";
+      }
+    }
+
+    // 3. LOGOUT
     document.getElementById("logoutBtn").addEventListener("click", async () => {
       await auth.signOut();
       window.location.href = "login.html";
-    });
-
-    // Load courses.json
-    document.addEventListener("DOMContentLoaded", async () => {
-      const coursesContainer = document.querySelector(".courses ul");
-      try {
-        const response = await fetch("courses.json");
-        const courses = await response.json();
-        coursesContainer.innerHTML = "";
-        courses.forEach(course => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <strong>${course.title}</strong> ($${course.price})<br>
-            <a href="${course.materials.pdf}" target="_blank">📄 PDF</a>
-            <a href="${course.materials.quiz}" target="_blank">📝 Quiz</a>
-            <ul>
-              ${course.materials.modules.map(m => `<li>${m}</li>`).join("")}
-            </ul>
-          `;
-          coursesContainer.appendChild(li);
-        });
-      } catch (err) {
-        coursesContainer.innerHTML = "<p>⚠️ Could not load courses.</p>";
-        console.error("Error loading courses.json:", err);
-      }
     });
   </script>
 </body>
