@@ -136,43 +136,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // FIREBASE SAVE: When user clicks "Complete Registration"
-    const completeEnrollBtn = document.querySelector('.enroll-luxury-content .auth-btn');
-    if (completeEnrollBtn) {
-        completeEnrollBtn.addEventListener('click', async (e) => {
+    // UPDATED FIREBASE SAVE: Listening to the Form Submit
+    const enrollForm = document.getElementById('enrollForm');
+    if (enrollForm) {
+        enrollForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // 1. Check if logged in
+            // 1. Verify User Session
             const user = firebase.auth().currentUser;
             if (!user) {
-                alert("Please log in or sign up first to enroll!");
+                alert("Please log in to your student account first to register.");
                 window.location.href = "login.html";
                 return;
             }
 
-            // 2. Get Selected Courses
+            // 2. Collect Data
             const checks = Array.from(popupCourseList.querySelectorAll('input[type="checkbox"]:checked'));
-            const courseIds = checks.map(c => c.value); // Uses the checkbox "value"
+            const courseTitles = checks.map(c => c.getAttribute('data-name')); 
 
-            if (courseIds.length === 0) {
+            if (courseTitles.length === 0) {
                 alert("Please select at least one module.");
                 return;
             }
 
             try {
-                // 3. Save to Firestore under the User's Unique UID
-                await firebase.firestore().collection("enrollments").doc(user.uid).set({
-                    courses: courseIds,
+                // 3. Save to Firestore (This creates the collection in your console)
+                const db = firebase.firestore();
+                await db.collection("enrollments").doc(user.uid).set({
+                    courses: courseTitles,
                     studentEmail: user.email,
+                    fullName: document.getElementById('enrollName').value,
                     enrolledAt: firebase.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
 
-                alert("Enrollment Successful! Your dashboard is now updated.");
-                closeAll();
+                alert("Enrollment Successful! Redirecting to your dashboard...");
                 window.location.href = "dashboard.html";
             } catch (error) {
                 console.error("Firestore Error:", error);
-                alert("Error saving enrollment: " + error.message);
+                alert("Database Error: " + error.message);
             }
         });
     }
