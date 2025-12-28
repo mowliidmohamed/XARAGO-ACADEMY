@@ -136,13 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // UPDATED FIREBASE SAVE: Listening to the Form Submit
     const enrollForm = document.getElementById('enrollForm');
     if (enrollForm) {
         enrollForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // 1. Verify User Session
             const user = firebase.auth().currentUser;
             if (!user) {
                 alert("Please log in to your student account first to register.");
@@ -150,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 2. Collect Data
             const checks = Array.from(popupCourseList.querySelectorAll('input[type="checkbox"]:checked'));
             const courseTitles = checks.map(c => c.getAttribute('data-name')); 
 
@@ -160,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                // 3. Save to Firestore (This creates the collection in your console)
                 const db = firebase.firestore();
                 await db.collection("enrollments").doc(user.uid).set({
                     courses: courseTitles,
@@ -178,7 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 7. NEWSLETTER & INITIALIZATION ---
+    // --- 7. NEWSLETTER LOGIC ---
+    const openNewsletterBtn = document.getElementById('openNewsletterBtn');
+    
+    // Auto-show after 5 seconds
     if (newsletterPopup) {
         setTimeout(() => {
             if (!newsletterPopup.classList.contains('active')) {
@@ -188,11 +187,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
+    // Manual-show from footer button
+    if (openNewsletterBtn) {
+        openNewsletterBtn.addEventListener('click', () => {
+            newsletterPopup.style.display = 'flex';
+            newsletterPopup.classList.add('active');
+        });
+    }
+
+    // --- 8. PWA INSTALL LOGIC ---
+    let deferredPrompt;
+    const installBtn = document.getElementById('pwaInstallBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (installBtn) installBtn.style.display = 'block';
+
+        if (installBtn) {
+            installBtn.addEventListener('click', () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                    installBtn.style.display = 'none';
+                });
+            });
+        }
+    });
+
     loadCourses();
     loadStudentWork();
 });
 
-// --- 8. GLOBAL FUNCTIONS ---
+// --- 9. GLOBAL FUNCTIONS ---
 function openZoom(src) {
     let zoom = document.getElementById('imageZoom');
     if (!zoom) {
@@ -210,27 +240,3 @@ function openZoom(src) {
     }
     zoom.style.display = 'flex';
 }
-let deferredPrompt;
-const installBtn = document.getElementById('pwaInstallBtn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI notify the user they can install the PWA
-  installBtn.style.display = 'block';
-
-  installBtn.addEventListener('click', () => {
-    // Show the prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      }
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    });
-  });
-});
