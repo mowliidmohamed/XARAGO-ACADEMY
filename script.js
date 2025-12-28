@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return;
 
         try {
-            const response = await fetch('./courses.json');
+            const response = await fetch('courses.json');
             const courses = await response.json();
 
             container.innerHTML = courses.map(course => `
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!gallery) return;
 
         try {
-            const response = await fetch('./students.json'); 
+            const response = await fetch('students.json'); 
             const studentWork = await response.json();
 
             gallery.innerHTML = studentWork.map(work => `
