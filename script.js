@@ -7,12 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const response = await fetch('courses.json');
+            if (!response.ok) throw new Error('Failed to fetch courses');
             const courses = await response.json();
 
-            container.innerHTML = courses.map(course => `
+            container.innerHTML = courses.map(course => {
+                // We encode the object to safely pass it through an HTML attribute
+                const safeCourse = encodeURIComponent(JSON.stringify(course));
+                return `
                 <div class="pillar-card" 
                      style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('${course.image}');"
-                     onclick="openCourseModal(${JSON.stringify(course).replace(/"/g, '&quot;')})">
+                     onclick="openCourseModal('${safeCourse}')">
                     <div class="course-badge" style="position:absolute; top:20px; right:20px; background:#d4af37; color:#fff; padding:5px 10px; font-size:0.7rem; border-radius:3px;">${course.level}</div>
                     <div class="pillar-content">
                         <h3>${course.title}</h3>
@@ -20,35 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="price-tag" style="font-weight: bold; color: #fff;">$${course.price}</span>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         } catch (e) { 
-            console.error("Course Loading Error:", e); 
+            console.error("Course Loading Error:", e);
+            container.innerHTML = `<p style="color: grey; grid-column: 1/-1; text-align: center;">Curriculum updates in progress. Please check back shortly.</p>`;
         }
     }
 
-    // --- 2. HISTORY MODAL LOGIC ---
-    const historyModal = document.getElementById('historyModal');
-    const openHistoryBtn = document.getElementById('openHistoryBtn');
-    const closeHistoryBtn = document.getElementById('closeHistoryBtn');
-
-    if (openHistoryBtn) {
-        openHistoryBtn.addEventListener('click', () => {
-            historyModal.style.display = 'flex';
-            historyModal.classList.add('active');
-        });
-    }
-
-    if (closeHistoryBtn) {
-        closeHistoryBtn.addEventListener('click', () => {
-            historyModal.style.display = 'none';
-            historyModal.classList.remove('active');
-        });
-    }
-
-    // --- 3. COURSE MODAL LOGIC ---
-    window.openCourseModal = function(course) {
+    // --- 2. COURSE MODAL LOGIC ---
+    window.openCourseModal = function(encodedCourse) {
         const modal = document.getElementById('courseModal');
         if (!modal) return;
+
+        // Decode the data back into a JavaScript Object
+        const course = JSON.parse(decodeURIComponent(encodedCourse));
 
         document.getElementById('modalTitle').innerText = course.title;
         document.getElementById('modalLevel').innerText = course.level;
@@ -63,13 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.add('active');
     };
 
-    // --- 4. LOAD STUDENT WORK (Gallery) ---
+    // --- 3. LOAD STUDENT WORK (Gallery) ---
     async function loadStudentWork() {
         const gallery = document.getElementById('studentGallery');
         if (!gallery) return;
 
         try {
             const response = await fetch('students.json'); 
+            if (!response.ok) throw new Error('Failed to fetch students');
             const studentWork = await response.json();
 
             gallery.innerHTML = studentWork.map(work => `
@@ -89,10 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 5. POPUP & MODAL CONTROLS ---
+    // --- 4. POPUP & MODAL CONTROLS ---
     const enrollPopup = document.getElementById('enrollPopup');
     const newsletterPopup = document.getElementById('newsletterPopup');
     const courseModal = document.getElementById('courseModal');
+    const historyModal = document.getElementById('historyModal');
 
     function closeAll() {
         [enrollPopup, newsletterPopup, courseModal, historyModal].forEach(p => {
@@ -103,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('.close-enroll, .close-popup, .close-modal').forEach(btn => {
+    document.querySelectorAll('.close-enroll, .close-popup, .close-modal, #closeHistoryBtn').forEach(btn => {
         btn.addEventListener('click', closeAll);
     });
 
@@ -112,6 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
             closeAll();
         }
     });
+
+    // --- 5. HISTORY MODAL TRIGGER ---
+    const openHistoryBtn = document.getElementById('openHistoryBtn');
+    if (openHistoryBtn) {
+        openHistoryBtn.addEventListener('click', () => {
+            historyModal.style.display = 'flex';
+        });
+    }
 
     // --- 6. ENROLLMENT & FIREBASE SAVE LOGIC ---
     const openEnrollBtn = document.getElementById('openEnrollBtn');
@@ -144,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const user = firebase.auth().currentUser;
             if (!user) {
                 alert("Please log in to your student account first to register.");
-                window.location.href = "login.html";
+                window.location.href = "login.html"; // Ensure this page exists
                 return;
             }
 
@@ -165,64 +164,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     enrolledAt: firebase.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
 
-                alert("Enrollment Successful! Redirecting to your dashboard...");
+                alert("Enrollment Successful!");
                 window.location.href = "dashboard.html";
             } catch (error) {
-                console.error("Firestore Error:", error);
                 alert("Database Error: " + error.message);
             }
         });
     }
 
-    // --- 7. NEWSLETTER LOGIC ---
-    const openNewsletterBtn = document.getElementById('openNewsletterBtn');
-    
-    // Auto-show after 5 seconds
+    // --- 7. PWA & NEWSLETTER ---
     if (newsletterPopup) {
         setTimeout(() => {
             if (!newsletterPopup.classList.contains('active')) {
                 newsletterPopup.style.display = 'flex';
                 newsletterPopup.classList.add('active');
             }
-        }, 5000);
+        }, 8000);
     }
 
-    // Manual-show from footer button
-    if (openNewsletterBtn) {
-        openNewsletterBtn.addEventListener('click', () => {
-            newsletterPopup.style.display = 'flex';
-            newsletterPopup.classList.add('active');
-        });
-    }
-
-    // --- 8. PWA INSTALL LOGIC ---
-    let deferredPrompt;
-    const installBtn = document.getElementById('pwaInstallBtn');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        if (installBtn) installBtn.style.display = 'block';
-
-        if (installBtn) {
-            installBtn.addEventListener('click', () => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    }
-                    deferredPrompt = null;
-                    installBtn.style.display = 'none';
-                });
-            });
-        }
-    });
-
+    // Initialize the data loads
     loadCourses();
     loadStudentWork();
 });
 
-// --- 9. GLOBAL FUNCTIONS ---
+// --- 8. GLOBAL IMAGE ZOOM ---
 function openZoom(src) {
     let zoom = document.getElementById('imageZoom');
     if (!zoom) {
@@ -231,8 +196,8 @@ function openZoom(src) {
         zoom.className = 'popup-overlay';
         zoom.innerHTML = `
             <div class="popup-content" style="background:none; text-align:center; box-shadow:none;">
-                <span class="close-popup" onclick="this.parentElement.parentElement.style.display='none'" style="color:#fff; font-size:3rem;">×</span>
-                <img src="${src}" style="max-width:100%; max-height:80vh; border:5px solid #fff; border-radius:4px;">
+                <span class="close-popup" onclick="this.parentElement.parentElement.style.display='none'" style="color:#fff; font-size:3rem; cursor:pointer;">×</span>
+                <img src="${src}" style="max-width:90%; max-height:80vh; border:4px solid #fff; border-radius:2px;">
             </div>`;
         document.body.appendChild(zoom);
     } else {
