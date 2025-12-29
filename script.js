@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     courses: courseTitles,
                     studentEmail: user.email,
                     fullName: document.getElementById('enrollName').value,
+                    phone: document.getElementById('enrollPhone').value, // NEW FIELD
                     enrolledAt: firebase.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
 

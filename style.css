@@ -495,3 +495,117 @@ h1, h2, h3 {
         padding: 30px 20px;
     }
 }
+/* --- Enrollment Grid Layout --- */
+.enroll-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.enroll-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- Input Styling --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #d4af37;
+    outline: none;
+}
+
+/* --- Professional Button --- */
+.btn-complete-reg {
+    margin-top: 25px;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.4s all ease;
+}
+
+.btn-complete-reg:hover {
+    background: #d4af37;
+    padding-right: 30px;
+}
+
+.btn-arrow {
+    font-size: 1.2rem;
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .enroll-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Container for checkboxes */
+.course-selection-list {
+    max-height: 280px; /* Limits height so it doesn't push the button out */
+    overflow-y: auto;  /* Adds a scrollbar if list is long */
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+/* Custom Scrollbar for a premium look */
+.course-selection-list::-webkit-scrollbar {
+    width: 4px;
+}
+.course-selection-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.course-selection-list::-webkit-scrollbar-thumb {
+    background: #d4af37;
+}
+
+/* Aligning the label content */
+.course-checkbox-card {
+    display: grid;
+    grid-template-columns: 30px 1fr auto; /* Fixed width for checkbox and price */
+    align-items: center;
+    padding: 12px 15px;
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.2s;
+}
+
+.course-checkbox-card:hover {
+    border-color: #d4af37;
+    background: #fafafa;
+}
+
+.course-checkbox-card input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #d4af37;
+}
