@@ -187,6 +187,18 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCourses();
     loadStudentWork();
 });
+// --- NEWSLETTER CLICK LOGIC ---
+const openNewsletterBtn = document.getElementById('openNewsletterBtn');
+const newsletterPopup = document.getElementById('newsletterPopup');
+
+if (openNewsletterBtn && newsletterPopup) {
+    openNewsletterBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevents the page from jumping
+        closeAll(); // Close any other open modals first
+        newsletterPopup.style.display = 'flex';
+        newsletterPopup.classList.add('active');
+    });
+}
 
 // --- 8. GLOBAL IMAGE ZOOM ---
 function openZoom(src) {
