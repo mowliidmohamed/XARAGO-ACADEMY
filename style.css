@@ -384,3 +384,114 @@ h1, h2, h3 {
     .about-stats-grid { grid-template-columns: 1fr; gap: 30px; }
     .hero h1 { font-size: 2.5rem; }
 }
+/* --- Enrollment Popup Specifics --- */
+.enroll-luxury-content {
+    max-width: 800px;
+    border-radius: 0; /* Keeps the sharp, high-fashion look */
+    border-top: 5px solid #d4af37;
+    padding: 50px;
+}
+
+.enroll-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-subtitle {
+    color: #888;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.enroll-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.enroll-step-title {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.enroll-step-title span {
+    color: #d4af37;
+    font-weight: bold;
+}
+
+/* --- Course Checkbox Cards --- */
+.course-checkbox-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.course-checkbox-card:hover {
+    border-color: #d4af37;
+}
+
+.course-checkbox-card input[type="checkbox"] {
+    margin-right: 15px;
+    accent-color: #d4af37;
+    width: 18px;
+    height: 18px;
+}
+
+.course-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.course-cost {
+    color: #d4af37;
+    font-weight: bold;
+}
+
+/* --- Tuition Summary Box --- */
+.tuition-summary {
+    background: #fdfaf0;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.summary-header {
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e2d5b2;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.selected-items-list {
+    list-style: none;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.total-bar {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+/* --- Responsive fix for the Popup --- */
+@media (max-width: 768px) {
+    .enroll-grid {
+        grid-template-columns: 1fr;
+    }
+    .enroll-luxury-content {
+        padding: 30px 20px;
+    }
+}
