@@ -609,3 +609,20 @@ h1, h2, h3 {
     cursor: pointer;
     accent-color: #d4af37;
 }
+.newsletter-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    z-index: 5; /* Ensures it is above footer backgrounds */
+}
+
+.newsletter-btn:hover {
+    background-color: #d4af37;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.newsletter-btn:active {
+    transform: scale(0.98); /* Slight "push" effect when clicked */
+}
