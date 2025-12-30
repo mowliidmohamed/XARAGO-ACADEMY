@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const courses = await response.json();
 
             container.innerHTML = courses.map(course => {
-                // We encode the object to safely pass it through an HTML attribute
                 const safeCourse = encodeURIComponent(JSON.stringify(course));
                 return `
                 <div class="pillar-card" 
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('courseModal');
         if (!modal) return;
 
-        // Decode the data back into a JavaScript Object
         const course = JSON.parse(decodeURIComponent(encodedCourse));
 
         document.getElementById('modalTitle').innerText = course.title;
@@ -126,10 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         popupCourseList.addEventListener('change', () => {
             const checks = Array.from(popupCourseList.querySelectorAll('input[type="checkbox"]'));
             const chosen = checks.filter(c => c.checked);
-            
             const selectedList = document.getElementById('popupSelectedCourses');
             selectedList.innerHTML = chosen.map(c => `<li>${c.getAttribute('data-name')}</li>`).join('');
-            
             const total = chosen.reduce((sum, c) => sum + Number(c.getAttribute('data-price')), 0);
             document.getElementById('popupTotalAmount').textContent = `$${total.toFixed(2)}`;
         });
@@ -139,11 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (enrollForm) {
         enrollForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const user = firebase.auth().currentUser;
             if (!user) {
                 alert("Please log in to your student account first to register.");
-                window.location.href = "login.html"; // Ensure this page exists
+                window.location.href = "login.html";
                 return;
             }
 
@@ -161,19 +156,52 @@ document.addEventListener('DOMContentLoaded', () => {
                     courses: courseTitles,
                     studentEmail: user.email,
                     fullName: document.getElementById('enrollName').value,
-                    phone: document.getElementById('enrollPhone').value, // NEW FIELD
+                    phone: document.getElementById('enrollPhone').value,
                     enrolledAt: firebase.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
 
-                alert("Enrollment Successful!");
-                window.location.href = "dashboard.html";
+                // SUCCESS MESSAGE INJECTION
+                const luxuryContent = document.querySelector('.enroll-luxury-content');
+                luxuryContent.innerHTML = `
+                    <div class="registration-success-message">
+                        <div class="success-icon">✓</div>
+                        <h2>Enrollment Successful!</h2>
+                        <p>Welcome to the Academy. Your dashboard is now active.</p>
+                        <button onclick="window.location.href='dashboard.html'" class="btn-complete-reg">Go to Dashboard</button>
+                    </div>`;
             } catch (error) {
                 alert("Database Error: " + error.message);
             }
         });
     }
 
-    // --- 7. PWA & NEWSLETTER ---
+    // --- 7. NEWSLETTER CLICK & SUCCESS LOGIC (Fixed Scope) ---
+    const openNewsletterBtn = document.getElementById('openNewsletterBtn');
+    if (openNewsletterBtn && newsletterPopup) {
+        openNewsletterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeAll();
+            newsletterPopup.style.display = 'flex';
+            newsletterPopup.classList.add('active');
+        });
+    }
+
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input').value;
+            newsletterForm.parentElement.innerHTML = `
+                <div class="registration-success-message">
+                    <div class="success-icon" style="width:60px; height:60px; line-height:60px;">✓</div>
+                    <h3>Welcome to XARAGO</h3>
+                    <p>Subscription confirmed for ${email}.</p>
+                    <button class="btn-primary" onclick="location.reload()" style="width:100%">Close</button>
+                </div>`;
+        });
+    }
+
+    // Auto-show Newsletter
     if (newsletterPopup) {
         setTimeout(() => {
             if (!newsletterPopup.classList.contains('active')) {
@@ -187,18 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCourses();
     loadStudentWork();
 });
-// --- NEWSLETTER CLICK LOGIC ---
-const openNewsletterBtn = document.getElementById('openNewsletterBtn');
-const newsletterPopup = document.getElementById('newsletterPopup');
-
-if (openNewsletterBtn && newsletterPopup) {
-    openNewsletterBtn.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevents the page from jumping
-        closeAll(); // Close any other open modals first
-        newsletterPopup.style.display = 'flex';
-        newsletterPopup.classList.add('active');
-    });
-}
 
 // --- 8. GLOBAL IMAGE ZOOM ---
 function openZoom(src) {
